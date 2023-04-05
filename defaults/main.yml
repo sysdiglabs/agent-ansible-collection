@@ -1,0 +1,12 @@
+---
+# defaults file for ansible-sysdig
+role_version: 0.0.1
+
+sysdig_agent_access_key: llsdkjfsdlfj
+sysdig_api_key: 2398423948
+sysdig_region: us1
+sysdig_proxy:
+sysdig_agent_mode: platform
+sysdig_agent_settings: ""
+sysdig_agent_driver: "kmodule"
+sysdig_agent_version: "12.12.1"

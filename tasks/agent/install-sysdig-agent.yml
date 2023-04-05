@@ -1,0 +1,10 @@
+---
+- name: Install Sysdig Agent (rpm)
+  include_tasks: agent/install-sysdig-agent-rpm.yml
+  when: ansible_pkg_mgr == "dnf" or ansible_pkg_mgr == "yum"
+
+- name: Start dragent Service
+  service:
+    name: dragent
+    enabled: true
+    state: started

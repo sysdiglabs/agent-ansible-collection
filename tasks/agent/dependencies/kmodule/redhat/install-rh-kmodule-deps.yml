@@ -1,0 +1,12 @@
+- name: Enable epel
+  ansible.builtin.package:
+    name: epel-release
+    state: latest
+  when:
+    - ansible_facts.distribution != "Fedora"
+
+- name: Install dkms
+  ansible.builtin.package:
+    name:
+      - dkms
+    state: latest

@@ -1,0 +1,8 @@
+---
+- name: Create dragent.yaml file
+  template:
+    src: dragent.yaml.j2
+    dest: "/opt/draios/etc/dragent.yaml"
+    owner: root
+    group: root
+    mode: 0644

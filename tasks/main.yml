@@ -1,0 +1,12 @@
+---
+- name: Install Sysdig Agent
+  block:
+    - name: Configure Installation Requirements
+      include_tasks: agent/configure-agent-requirements.yml
+
+    - name: Install Sysdig Agent
+      include_tasks: agent/install-sysdig-agent.yml
+  when: install_sysdig_agent
+
+- name: Configure Sysdig Agent
+  include_tasks: agent/configure-sysdig-agent.yml
