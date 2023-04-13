@@ -1,0 +1,11 @@
+- name: Configure Sysdig Agent rpm Repository
+  include_tasks: agent/dependencies/repositories/configure-rpm-repo.yml
+  when: ansible_pkg_mgr == "dnf" or ansible_pkg_mgr == "yum"
+
+- name: Install Kernel Headers
+  include_tasks: agent/dependencies/kernel-headers/install-kernel-headers.yml
+
+- name: Enable epel and Install dkms
+  include_tasks: agent/dependencies/kmodule/install-kmodule-deps.yml
+  when:
+    - sysdig_agent_driver == "kmodule"

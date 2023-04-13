@@ -1,0 +1,48 @@
+{%- macro mode_settings(mode) -%}
+{%- if mode == 'secure' -%}
+feature:
+  mode: secure
+app_checks_enabled: false
+jmx:
+  enabled: false
+prometheus:
+  enabled: false
+statsd:
+  enabled: false
+{%- elif mode == 'monitor' -%}
+feature:
+  mode: monitor
+commandlines_capture:
+  enabled: false
+drift_killer:
+  enabled: false
+falcobaseline:
+  enabled: false
+memdump:
+  enabled: false
+network_topology:
+  enabled: false
+secure_audit_streams:
+  enabled: false
+{%- elif mode == 'secure_light' -%}
+feature:
+  mode: secure_light
+app_checks_enabled: false
+drift_killer:
+  enabled: false
+falcobaseline:
+  enabled: false
+jmx:
+  enabled: false
+memdump:
+  enabled: false
+network_topology:
+  enabled: false
+prometheus:
+  enabled: false
+secure_audit_streams:
+  enabled: false
+statsd:
+  enabled: false
+{%- endif -%}
+{% endmacro -%}

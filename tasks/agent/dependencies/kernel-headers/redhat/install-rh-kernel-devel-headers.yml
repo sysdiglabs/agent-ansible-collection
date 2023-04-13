@@ -1,0 +1,5 @@
+---
+- name: Install Standard Headers
+  ansible.builtin.package:
+    name: kernel-devel-{{ ansible_kernel }}
+    state: present
