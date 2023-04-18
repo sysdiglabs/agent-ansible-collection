@@ -1,0 +1,5 @@
+- name: Install OS Specific Dependencies
+  include_tasks: agent/dependencies/os-specific/{{ distribution }}/install-{{ distribution }}-dependencies.yml
+  when: ansible_facts.distribution | lower | regex_search(distribution)
+  vars:
+    - distribution: amazon

@@ -1,0 +1,6 @@
+---
+- name: Install chkconfig
+  yum:
+    name: chkconfig
+    state: present
+  when: ansible_facts.distribution_version == "2023"

@@ -9,3 +9,11 @@
   include_tasks: agent/dependencies/kmodule/install-kmodule-deps.yml
   when:
     - sysdig_agent_driver == "kmodule"
+
+- name: Install Distribution Specific Dependencies
+  include_tasks: agent/dependencies/os-specific/install-os-dependencies.yml
+  # These checks below will need to be enhanced later to be more generic.
+  # Right now this is the only distribution that requires an extra step.
+  when:
+    - ansible_facts.distribution == "Amazon"
+    - ansible_facts.distribution_version == "2023"
