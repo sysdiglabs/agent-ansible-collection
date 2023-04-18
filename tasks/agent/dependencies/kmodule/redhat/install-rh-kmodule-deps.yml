@@ -3,7 +3,7 @@
     name: epel-release
     state: latest
   when:
-    - ansible_facts.distribution != "Fedora"
+    - ansible_facts.distribution not in ["Amazon", "Fedora"]
 
 - name: Install dkms
   ansible.builtin.package:
