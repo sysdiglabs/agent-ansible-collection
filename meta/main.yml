@@ -32,22 +32,15 @@ galaxy_info:
    - name: Amazon Linux 2
      versions:
       - all
-   - name: Debian
-     versions:
-     - jessie
-     - stretch
-     - buster
-     - bullseye
    - name: EL
      versions:
      - "7"
      - "8"
      - "9"
-   - name: Ubuntu
+   - name: Fedora
      versions:
-     - bionic
-     - focal
-     - jammy
+       - "36"
+       - "37"
 
   galaxy_tags:
     - monitoring
