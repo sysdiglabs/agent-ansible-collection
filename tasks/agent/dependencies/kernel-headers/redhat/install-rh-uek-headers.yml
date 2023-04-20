@@ -1,5 +1,0 @@
----
-- name: Install UEK Headers
-  ansible.builtin.package:
-    name: kernel-uek-devel-{{ ansible_kernel }}
-    state: present

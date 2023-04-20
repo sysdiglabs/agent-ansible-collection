@@ -1,0 +1,37 @@
+- name: (CentOS) Install Kernel Headers (7/8)
+  ansible.builtin.yum:
+    name: "{{ kernel_devel_package }}"
+    state: present
+  vars:
+    - match_str: vzkernel
+      kernel_devel_package: vzkernel-devel
+    - match_str: uek
+      kernel_devel_package: kernel-uek-devel-{{ ansible_kernel }}
+    - match_str: .*
+      kernel_devel_package: kernel-devel-{{ ansible_kernel }}
+  when:
+    - ansible_kernel_version | regex_search(match_str)
+    - ansible_distribution_major_version in ["7", "8"]
+
+- name: (CentOS) Install Kernel Headers (9)
+  ansible.builtin.dnf:
+    name: kernel-devel-matched
+    state: present
+  when: ansible_distribution_major_version in ["9"]
+
+- name: (CentOS) Install epel and dkms
+  block:
+    - name: (CentOS) Add epel GPG key
+      ansible.builtin.rpm_key:
+        key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+
+    - name: (CentOS) Install epel
+      ansible.builtin.yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+        state: present
+
+    - name: (CentOS) Install dkms
+      ansible.builtin.yum:
+        name: dkms
+        state: present
+  when: sysdig_agent_driver == "kmodule"
