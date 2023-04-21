@@ -2,9 +2,18 @@
 - name: Prepare
   hosts: all
   gather_facts: false
+  become: true
   tasks:
     - name: Make sure python3 is installed
       package:
         name: python3
         state: present
-      become: true
+
+    - name: Update Systems
+      package:
+        name: "*"
+        state: latest
+
+    - name: Reboot
+      reboot:
+        reboot_timeout: 3600
