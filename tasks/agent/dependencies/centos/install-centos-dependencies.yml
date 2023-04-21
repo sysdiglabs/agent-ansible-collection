@@ -35,3 +35,9 @@
         name: dkms
         state: present
   when: sysdig_agent_driver == "kmodule"
+
+- name: (CentOS) Install eBPF dependencies
+  ansible.builtin.yum:
+    name: clang,llvm
+    state: present
+  when: sysdig_agent_driver | lower == "ebpf"
