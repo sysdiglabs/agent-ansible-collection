@@ -1,5 +1,5 @@
 {% import 'agent_helpers.j2' as agent -%}
-collector_endpoint: {{ collector_url | default("https://collector.sysdigcloud.com") }}
+collector: {{ collector_url | default("https://collector.sysdigcloud.com") }}
 customerid: {{ agent_access_key | default("CHANGE-ME") }}
 {% if 'cointerface' not in sysdig_agent_settings -%}
 cointerface: false
