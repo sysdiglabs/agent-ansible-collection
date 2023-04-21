@@ -1,4 +1,0 @@
-- name: Install Kernel Module Dependencies
-  include_tasks: agent/dependencies/kmodule/redhat/install-rh-kmodule-deps.yml
-  when:
-    - ansible_facts.os_family == "RedHat"

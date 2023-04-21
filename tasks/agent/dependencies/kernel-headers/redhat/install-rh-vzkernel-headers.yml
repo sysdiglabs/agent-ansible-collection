@@ -1,5 +1,0 @@
----
-- name: Install OpenVZ Headers
-  ansible.builtin.package:
-    name: vzkernel-devel-{{ ansible_kernel }}
-    state: present

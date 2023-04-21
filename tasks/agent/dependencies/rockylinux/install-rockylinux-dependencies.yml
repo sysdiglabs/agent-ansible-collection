@@ -1,0 +1,34 @@
+- name: (RockyLinux) Install Kernel Headers (8)
+  ansible.builtin.dnf:
+    name: "{{ kernel_header_package }}"
+    state: present
+  vars:
+    - match_str: uek
+      kernel_header_package: kernel-uek-devel-{{ ansible_kernel }}
+    - match_str: .*
+      kernel_header_package: kernel-devel-{{ ansible_kernel }}
+  when:
+    - ansible_kernel_version | regex_search(match_str)
+    - ansible_distribution_major_version == "8"
+
+- name: (RockyLinux) Install Kernel Headers (9)
+  ansible.builtin.dnf:
+    name: kernel-devel-matched
+    state: present
+  when: ansible_distribution_major_version == "9"
+
+- name: (RockyLinux) Install epel and dkms
+  block:
+    - name: Add epel GPG key
+      ansible.builtin.rpm_key:
+        key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+    - name: Install epel
+      ansible.builtin.yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+        state: present
+
+    - name: Install dkms
+      ansible.builtin.yum:
+        name: dkms
+        state: present
+  when: sysdig_agent_driver == "kmodule"

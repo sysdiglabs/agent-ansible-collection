@@ -1,5 +1,0 @@
----
-- name: Install PAE Headers
-  ansible.builtin.package:
-    name: kernel-PAE-devel-{{ ansible_kernel }}
-    state: present
