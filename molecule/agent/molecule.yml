@@ -33,6 +33,7 @@ platforms:
     region: {{ aws_region }}
     vpc_subnet_id: {{ vpc_subnet_id }}
   - name: centos8
+    boot_wait_seconds: 180
     image_filters:
       architecture: x86_64
     image_name: "CentOS Stream 8*"
@@ -53,8 +54,18 @@ provisioner:
     name: ansible-lint
 scenario:
   name: agent
+  create_sequence:
+    - create
+    - prepare
+  converge_sequence:
+    - create
+    - prepare
+    - converge
+  destroy_sequence:
+    - destroy
   test_sequence:
     - create
+    - prepare
     - converge
     - verify
     - destroy
