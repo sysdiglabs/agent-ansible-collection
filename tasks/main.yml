@@ -4,9 +4,57 @@
     - name: Configure Installation Requirements
       include_tasks: agent/configure-agent-requirements.yml
 
-    - name: Install Sysdig Agent
-      include_tasks: agent/install-sysdig-agent.yml
-  when: install_sysdig_agent
+    - name: Install Sysdig Agent (rpm)
+      ansible.builtin.package:
+        name: "draios-agent{% if sysdig_agent_version is defined and sysdig_agent_version %}-{{ sysdig_agent_version }}{%endif%}"
+        state: latest
 
-- name: Configure Sysdig Agent
-  include_tasks: agent/configure-sysdig-agent.yml
+    - name: Create dragent.yaml file
+      template:
+        src: dragent.yaml.j2
+        dest: "/opt/draios/etc/dragent.yaml"
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Enable eBPF
+      block:
+        - name: Enable eBPF probe
+          ansible.builtin.lineinfile:
+            path: /etc/sysconfig/dragent
+            regexp: SYSDIG_BPF_PROBE
+            line: export SYSDIG_BPF_PROBE=
+            create: true
+
+        - name: Determine if sysdigcloud_probe module is loaded
+          ansible.builtin.shell:
+            cmd: lsmod
+          register: lsmod_res
+
+        - name: Ensure kernel module is not loaded
+          ansible.builtin.shell:
+            cmd: rmmod sysdigcloud_probe
+          when: lsmod_res.stdout | regex_search('sysdigcloud_probe')
+      when: sysdig_agent_driver | lower == "ebpf"
+
+    - name: Disable eBPF
+      ansible.builtin.lineinfile:
+        path: /etc/sysconfig/dragent
+        regexp: SYSDIG_BPF_PROBE
+        state: absent
+      when: sysdig_agent_driver == "kmodule"
+
+    - name: Start dragent Service
+      block:
+        - name: Start dragent Service
+          service:
+            name: dragent
+            enabled: true
+            state: started
+      rescue:
+        - name: Attempting to Start dragent Service with sysvinit
+          sysvinit:
+            name: dragent
+            enabled: true
+            state: started
+  when: install_sysdig_agent
