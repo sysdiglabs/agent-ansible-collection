@@ -1,8 +1,17 @@
 ---
 - name: Install Sysdig Agent
   block:
-    - name: Configure Installation Requirements
-      include_tasks: agent/configure-agent-requirements.yml
+    - name: Install Dependencies
+      include_tasks: agent/dependencies/{{ ansible_distribution | lower }}/install-{{ ansible_distribution | lower }}-dependencies.yml
+      when: sysdig_agent_install_build_dependencies
+
+    - name: Configure Sysdig Agent Repository
+      ansible.builtin.yum_repository:
+        baseurl: https://download.sysdig.com/stable/rpm/$basearch
+        description: Sysdig Agent Repository
+        gpgkey: https://download.sysdig.com/DRAIOS-GPG-KEY.public
+        name: draios
+      when: ansible_pkg_mgr in ["dnf", "yum"]
 
     - name: Install Sysdig Agent (rpm)
       ansible.builtin.package:
@@ -19,25 +28,31 @@
 
     - name: Enable eBPF
       block:
-        - name: Enable eBPF probe
+        - name: (eBPF) Enable eBPF probe
           ansible.builtin.lineinfile:
             path: /etc/sysconfig/dragent
             regexp: SYSDIG_BPF_PROBE
             line: export SYSDIG_BPF_PROBE=
             create: true
 
-        - name: Determine if sysdigcloud_probe module is loaded
+        - name: (eBPF) Determine if sysdigcloud_probe module is loaded
           ansible.builtin.shell:
             cmd: lsmod
           register: lsmod_res
 
-        - name: Ensure kernel module is not loaded
+        - name: (eBPF) Stop dragent Service to unload kernel module
+          ansible.builtin.service:
+            name: dragent
+            state: stopped
+          when: lsmod_res.stdout | regex_search('sysdigcloud_probe')
+
+        - name: (eBPF) Ensure kernel module is not loaded
           ansible.builtin.shell:
             cmd: rmmod sysdigcloud_probe
           when: lsmod_res.stdout | regex_search('sysdigcloud_probe')
       when: sysdig_agent_driver | lower == "ebpf"
 
-    - name: Disable eBPF
+    - name: (kmodule) Disable eBPF
       ansible.builtin.lineinfile:
         path: /etc/sysconfig/dragent
         regexp: SYSDIG_BPF_PROBE
