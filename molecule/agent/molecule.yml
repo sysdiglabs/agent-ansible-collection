@@ -70,4 +70,4 @@ scenario:
     - verify
     - destroy
 verifier:
-  name: ansible
+  name: testinfra
