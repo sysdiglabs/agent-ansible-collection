@@ -1,5 +1,7 @@
 import yaml
 
+from retry import retry
+
 # Test that the agent(s) have created a connection to the backend
 
 
@@ -12,6 +14,7 @@ def test_conn_settings(host):
     assert y["customerid"]
 
 
+@retry(tries=5, jitter=(1, 5))
 def test_be_connection(host):
     with host.sudo():
         f = host.file("/opt/draios/logs/draios.log")

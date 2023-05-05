@@ -1,0 +1,5 @@
+---
+- name: (Ubuntu) Install Kernel Headers
+  ansible.builtin.apt:
+    name: linux-headers-{{ ansible_kernel }}
+    state: present
