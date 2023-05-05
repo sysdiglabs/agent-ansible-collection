@@ -1,7 +1,7 @@
 ---
 - name: Prepare
   hosts: all
-  gather_facts: false
+  gather_facts: true
   become: true
   tasks:
     - name: Make sure python3 is installed
@@ -10,9 +10,17 @@
         state: present
 
     - name: Update Systems
-      package:
+      ansible.builtin.yum:
         name: "*"
         state: latest
+      when: ansible_pkg_mgr in ['dnf', 'yum']
+
+    - name: Update Systems
+      ansible.builtin.apt:
+        name: "*"
+        update_cache: true
+        state: latest
+      when: ansible_pkg_mgr == "apt"
 
     - name: Reboot
       reboot:
