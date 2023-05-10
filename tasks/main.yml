@@ -6,7 +6,7 @@
       when: sysdig_agent_install_build_dependencies
 
     - name: Configure Sysdig Agent Repository
-      include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'rpm'] else 'deb' }}-repository.yml"
+      include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-repository.yml"
 
     - name: Install Sysdig Agent
       ansible.builtin.package:
