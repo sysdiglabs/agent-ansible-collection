@@ -11,6 +11,7 @@
   when: ansible_distribution_major_version == "9"
 
 - name: (AlmaLinux) Install epel and dkms
+  when: sysdig_agent_driver == "kmodule"
   block:
     - name: Add epel GPG key
       ansible.builtin.rpm_key:
@@ -24,4 +25,3 @@
       ansible.builtin.yum:
         name: dkms
         state: present
-  when: sysdig_agent_driver == "kmodule"

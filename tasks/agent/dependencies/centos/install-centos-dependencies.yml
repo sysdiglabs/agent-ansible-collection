@@ -11,6 +11,7 @@
   when: ansible_distribution_major_version in ["9"]
 
 - name: (CentOS) Install epel and dkms
+  when: sysdig_agent_driver == "kmodule"
   block:
     - name: (CentOS) Add epel GPG key
       ansible.builtin.rpm_key:
@@ -25,7 +26,6 @@
       ansible.builtin.yum:
         name: dkms
         state: present
-  when: sysdig_agent_driver == "kmodule"
 
 - name: (CentOS) Install eBPF dependencies
   ansible.builtin.yum:

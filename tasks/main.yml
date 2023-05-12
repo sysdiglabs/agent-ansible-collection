@@ -1,20 +1,21 @@
 ---
 - name: Install Sysdig Agent
+  when: install_sysdig_agent
   block:
     - name: Install Dependencies
-      include_tasks: agent/dependencies/{{ ansible_distribution | lower }}/install-{{ ansible_distribution | lower }}-dependencies.yml
+      ansible.builtin.include_tasks: agent/dependencies/{{ ansible_distribution | lower }}/install-{{ ansible_distribution | lower }}-dependencies.yml
       when: sysdig_agent_install_build_dependencies
 
     - name: Configure Sysdig Agent Repository
-      include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-repository.yml"
+      ansible.builtin.include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-repository.yml"
 
     - name: Install Sysdig Agent
       ansible.builtin.package:
-        name: "draios-agent{% if sysdig_agent_version is defined and sysdig_agent_version %}{% if ansible_pkg_mgr == 'apt' %}={{ sysdig_agent_version }}{% else %}-{{ sysdig_agent_version }}{% endif %}{%endif%}"
-        state: latest
+        name: "draios-agent{% if ansible_pkg_mgr == 'apt' %}={{ sysdig_agent_version }}{% else %}-{{ sysdig_agent_version }}{% endif %}"
+        state: present
 
     - name: Create dragent.yaml file
-      template:
+      ansible.builtin.template:
         src: dragent.yaml.j2
         dest: "/opt/draios/etc/dragent.yaml"
         owner: root
@@ -22,6 +23,7 @@
         mode: 0644
 
     - name: Enable eBPF
+      when: sysdig_agent_driver | lower == "ebpf"
       block:
         - name: (eBPF) Enable eBPF probe
           ansible.builtin.lineinfile:
@@ -29,23 +31,25 @@
             regexp: SYSDIG_BPF_PROBE
             line: export SYSDIG_BPF_PROBE=
             create: true
+            mode: 0o644
 
         - name: (eBPF) Determine if sysdigcloud_probe module is loaded
-          ansible.builtin.shell:
-            cmd: lsmod
-          register: lsmod_res
+          ansible.builtin.command: >
+            lsmod | grep sysdigcloud_probe && echo -n LOADED || echo -n NOT_LOADED
+          register: probe_loaded
+          changed_when: probe_loaded.stdout == 'LOADED'
 
         - name: (eBPF) Stop dragent Service to unload kernel module
           ansible.builtin.service:
             name: dragent
             state: stopped
-          when: lsmod_res.stdout | regex_search('sysdigcloud_probe')
+          when: probe_loaded.stdout == 'LOADED'
 
         - name: (eBPF) Ensure kernel module is not loaded
-          ansible.builtin.shell:
-            cmd: rmmod sysdigcloud_probe
-          when: lsmod_res.stdout | regex_search('sysdigcloud_probe')
-      when: sysdig_agent_driver | lower == "ebpf"
+          ansible.builtin.command: modprobe -r sysdigcloud_probe
+          register: probe_removed
+          when: probe_loaded.stdout == 'LOADED'
+          changed_when: probe_removed.rc == 0
 
     - name: (kmodule) Disable eBPF
       ansible.builtin.lineinfile:
@@ -57,14 +61,13 @@
     - name: Start dragent Service
       block:
         - name: Start dragent Service
-          service:
+          ansible.builtin.service:
             name: dragent
             enabled: true
             state: started
       rescue:
         - name: Attempting to Start dragent Service with sysvinit
-          sysvinit:
+          ansible.builtin.sysvinit:
             name: dragent
             enabled: true
             state: started
-  when: install_sysdig_agent
