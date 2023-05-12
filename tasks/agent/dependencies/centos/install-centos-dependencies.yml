@@ -1,17 +1,8 @@
 - name: (CentOS) Install Kernel Headers (7/8)
   ansible.builtin.yum:
-    name: "{{ kernel_devel_package }}"
+    name: "kernel-devel-{{ ansible_kernel }}"
     state: present
-  vars:
-    - match_str: vzkernel
-      kernel_devel_package: vzkernel-devel
-    - match_str: uek
-      kernel_devel_package: kernel-uek-devel-{{ ansible_kernel }}
-    - match_str: .*
-      kernel_devel_package: kernel-devel-{{ ansible_kernel }}
-  when:
-    - ansible_kernel_version | regex_search(match_str)
-    - ansible_distribution_major_version in ["7", "8"]
+  when: ansible_distribution_major_version in ["7", "8"]
 
 - name: (CentOS) Install Kernel Headers (9)
   ansible.builtin.dnf:

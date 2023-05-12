@@ -1,15 +1,8 @@
 - name: (AlmaLinux) Install Kernel Headers (8)
   ansible.builtin.dnf:
-    name: "{{ kernel_header_package }}"
+    name: "kernel-devel-{{ ansible_kernel }}"
     state: present
-  vars:
-    - match_str: uek
-      kernel_header_package: kernel-uek-devel-{{ ansible_kernel }}
-    - match_str: .*
-      kernel_header_package: kernel-devel-{{ ansible_kernel }}
-  when:
-    - ansible_kernel_version | regex_search(.match_str)
-    - ansible_distribution_major_version == "8"
+  when: ansible_distribution_major_version == "8"
 
 - name: (AlmaLinux) Install Kernel Headers (9)
   ansible.builtin.dnf:
