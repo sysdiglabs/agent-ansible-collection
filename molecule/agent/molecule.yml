@@ -13,81 +13,82 @@ platforms:
     image_filters:
       architecture: x86_64
     image_owner: "136693071363"  # Debian
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: debian-11
     image_name: "debian-11-amd64*"
     image_filters:
       architecture: x86_64
     image_owner: "136693071363"  # Debian
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: ubuntu-1804
     image_name: "*ubuntu-bionic-18.04*"
     image_filters:
       architecture: x86_64
     image_owner: "099720109477"  # Canonical
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: ubuntu-2004
     image_name: "*ubuntu-focal-20.04*"
     image_filters:
       architecture: x86_64
     image_owner: "099720109477"  # Canonical
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: ubuntu-2204
     image_name: "*ubuntu-jammy-22.04*"
     image_filters:
      architecture: x86_64
     image_owner: "099720109477"  # Canonical
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: amzn2
     image_name: amzn2-ami-kernel-5.10*gp2
     image_filters:
       architecture: x86_64
     image_owner: "137112412989"  # Amazon
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: al2023
     image_name: al2023-ami*
     image_filters:
       architecture: x86_64
     image_owner: "137112412989"  # Amazon
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: centos7
     image_filters:
       architecture: x86_64
     image_name: "CentOS Linux 7*"
     image_owner: "125523088429"  # Red Hat CPE
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION  }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: centos8
     boot_wait_seconds: 180
     image_filters:
       architecture: x86_64
     image_name: "CentOS Stream 8*"
     image_owner: "125523088429"  # Red Hat CPE
-    instance_type: {{ instance_type }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION  }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
   - name: centos9
     image_filters:
       architecture: x86_64
     image_name: "CentOS Stream 9*"
     image_owner: "125523088429"  # Red Hat CPE
-    instance_type: {{ instance_type }}
-    region: {{ aws_region }}
-    vpc_subnet_id: {{ vpc_subnet_id }}
+    instance_type: "{{ secrets.INSTANCE_TYPE }}"
+    region: "{{ secrets.REGION }}"
+    vpc_subnet_id: "{{ secrets.VPC_SUBNET_ID }}"
 provisioner:
   name: ansible
   lint:
