@@ -3,6 +3,7 @@
   ansible.builtin.get_url:
     url: https://download.sysdig.com/DRAIOS-GPG-KEY.public
     dest: /etc/apt/trusted.gpg.d/sysdig.asc
+    mode: 0o644
 
 - name: (deb) Configure Sysdig Agent Repository
   ansible.builtin.apt_repository:
