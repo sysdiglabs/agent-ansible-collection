@@ -36,11 +36,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.DRAIOS_GH_ACTIONS_ANSIBLE_MOLECULE_ROLE_ARN }}
-          aws-region: us-east-1
+      - name: Expand templates for CI
+        run: |
+          find -path "*/molecule/*/molecule.yml.template" | xargs -L1 -- bash -c 'envsubst < $0 > ${0%.template}'
+        shell: bash
+        env:
+          INSTANCE_TYPE: ${{ secrets.INSTANCE_TYPE }}
+          REGION: ${{ secrets.REGION }}
+          VPC_SUBNET_ID: ${{ secrets.VPC_SUBNET_ID }}
+          SHOW_USAGE: false
 
       - uses: actions/setup-python@v4
         with:
@@ -50,6 +54,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r molecule/requirements.txt
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.DRAIOS_GH_ACTIONS_ANSIBLE_MOLECULE_ROLE_ARN }}
+          aws-region: us-east-1
 
       - name: Run Molecule tests
         run: |
