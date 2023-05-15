@@ -39,7 +39,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: {{ secrets.DRAIOS_GH_ACTIONS_ANSIBLE_MOLECULE_ROLE_ARN }}
+          role-to-assume: ${{ secrets.DRAIOS_GH_ACTIONS_ANSIBLE_MOLECULE_ROLE_ARN }}
           aws-region: us-east-1
 
       - uses: actions/setup-python@v4
