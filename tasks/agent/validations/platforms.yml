@@ -1,0 +1,22 @@
+---
+- name: (Agent) Validate OS Type
+  ansible.builtin.assert:
+    that:
+      - ansible_distribution in supported_platforms
+    quiet: true
+  vars:
+    supported_platforms: ['Amazon', 'CentOS', 'Debian', 'RedHat', 'Rocky', 'Ubuntu']
+
+- name: (Agent) Validate OS Version
+  ansible.builtin.assert:
+    that:
+      - ansible_distribution_version in supported_versions.{{ ansible_distribution | lower }}
+    quiet: true
+  vars:
+    supported_versions:
+      amazon: ['2', '2023']
+      centos: ['7.9', '8', '9']
+      debian: ['10', '11']
+      redhat: ['7', '8', '9']
+      rocky: ['8', '9']
+      ubuntu: ['18.04', '20.04', '22.04']

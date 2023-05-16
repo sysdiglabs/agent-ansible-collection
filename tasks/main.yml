@@ -2,6 +2,9 @@
 - name: Install Sysdig Agent
   when: install_sysdig_agent
   block:
+    - name: Validate Environment
+      ansible.builtin.include_tasks: agent/validations/platforms.yml
+
     - name: Install Dependencies
       ansible.builtin.include_tasks: agent/dependencies/{{ ansible_distribution | lower }}/install-{{ ansible_distribution | lower }}-dependencies.yml
       when: sysdig_agent_install_build_dependencies
