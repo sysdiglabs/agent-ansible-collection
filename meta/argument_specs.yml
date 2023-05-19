@@ -1,0 +1,170 @@
+---
+argument_specs:
+  # tasks/main.yml entry point
+  main:
+    short_description: Sysdig Ansible Role
+    options:
+      configuration:
+        type: dict
+        required: true
+        options:
+          security:
+            type: str
+            description: Sysdig Secure profile to use
+            choices:
+              - standard
+              - light
+              - disabled
+          monitoring:
+            type: str
+            description: Sysdig Monitor profile to use
+            choices:
+              - standard
+              - disabled
+          connection:
+            type: dict
+            required: true
+            description: "Network information necessary transmit data to Sysdig"
+            required_one_of:
+              - ['region', 'custom_collector']
+            mutually_exclusive:
+              - ['region', 'custom_collector']
+            options:
+              access_key:
+                type: str
+                required: true
+                description: "Sysdig Agent Access Key"
+              region:
+                type: str
+                required: false
+                description: "Sysdig SaaS region to connect to"
+              custom_collector:
+                type: dict
+                required: false
+                description: "Define custom network configuration for Sysdig Collectors. Needed for on-premise Backends."
+                options:
+                  url:
+                    description: "URL to use when connecting to the Sysdig Collector"
+                    type: str
+                    required: true
+                  port:
+                    description: "Port to use when connecting to the Sysdig Collector"
+                    type: int
+                    required: true
+              network_proxy:
+                type: dict
+                required: false
+                description: "Connection information required when utilizing a network proxy"
+                options:
+                  host:
+                    type: str
+                    required: true
+                    description: "IP Address, hostname, or FQDN of the proxy server"
+                  port:
+                    type: int
+                    required: true
+                    description: "Port to use when connecting to the proxy server"
+                  username:
+                    type: str
+                    required: false
+                    description: "Username to use when authenticating to the proxy server"
+                  password:
+                    type: str
+                    required: false
+                    description: "Password to use when authenticating to the proxy server"
+                  ssl_enabled:
+                    type: bool
+                    required: false
+                    description: "Whether or not to utilize an encrypted proxy connection"
+                  ssl_verify_certificate:
+                    type: bool
+                    required: false
+                    description: "Whether or not to validate the CA Cert used by the proxy server"
+                  ca_certificate_path:
+                    type: str
+                    required: false
+                    description: "Path of the CA Certificate to use on the host"
+          agent:
+            type: dict
+            required: false
+            description: "Advanced configuration options for the Sysdig Agent"
+            options:
+              driver:
+                type: dict
+                required: false
+                description: "Configuration elements for the Sysdig Agent system call driver"
+                options:
+                  type:
+                    type: str
+                    required: false
+                    description: "Specify the system call driver type for the Sysdig Agent"
+                    choices:
+                      - ebpf
+                      - kmodule
+                  location:
+                    type: str
+                    required: false
+                    description: "Location of a prebuilt system call driver to use. (ex. http(s)://...)"
+                  install_build_dependencies:
+                    type: bool
+                    required: false
+                    description: "Whether or not to install the Sysdig Agent system call driver build dependencies."
+              override:
+                type: dict
+                required: false
+                description: "Additional configuration data that will be directly placed into the Sysdig Agent configuration"
+              version:
+                type: str
+                required: false
+                description: "Sysdig Agent version to install"
+      features:
+        type: dict
+        required: false
+        description: "Sysdig feature tuning"
+        options:
+          monitoring:
+            type: dict
+            required: false
+            description: "Sysdig Monitor feature tuning"
+            options:
+              app_checks:
+                type: dict
+                required: false
+                description: "Legacy Sysdig App Check configuration."
+              jmx:
+                type: dict
+                required: false
+                description: "Sysdig Monitor JMX configuration."
+              statsd:
+                type: dict
+                required: false
+                description: "Sysdig Monitor StatsD configuration."
+              prometheus:
+                type: dict
+                required: false
+                description: "Sysdig Monitor Prometheus configuration."
+          security:
+            type: dict
+            required: false
+            description: "Sysdig Secure feature tuning"
+            options:
+              activity_audit:
+                type: dict
+                required: false
+                description: "Sysdig Secure Activity Audit configuration."
+              captures:
+                type: dict
+                required: false
+                description: "Sysdig Secure Captures configuration"
+              drift_detection:
+                type: dict
+                required: false
+                description: "Sysdig Secure Drift Detection configuration."
+              falcobaseline:
+                type: dict
+                required: false
+                description: "Sysdig Secure Falco Baseliner configuration"
+              memdumper:
+                type: dict
+                required: false
+                description: "Sysdig Secure Memdumper configuration"
