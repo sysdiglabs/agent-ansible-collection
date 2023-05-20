@@ -1,10 +1,1 @@
-{% import 'agent_helpers.j2' as agent -%}
-collector: {{ collector_url | default("https://collector.sysdigcloud.com") }}
-customerid: {{ agent_access_key | default("CHANGE-ME") }}
-{% if 'cointerface' not in sysdig_agent_settings -%}
-cointerface: false
-{% endif %}
-{{ agent.mode_settings(sysdig_agent_mode | default('', true)) }}
-{% if sysdig_agent_settings | default({}, true) | length > 0 %}
-{{ sysdig_agent_settings | to_nice_yaml }}
-{%- endif -%}
+{{ vars | toDragentConfiguration | to_nice_yaml(indent=2, sort_keys=false) }}

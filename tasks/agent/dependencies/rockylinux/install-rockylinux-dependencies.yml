@@ -11,7 +11,7 @@
   when: ansible_distribution_major_version == "9"
 
 - name: (RockyLinux) Install epel and dkms
-  when: sysdig_agent_driver == "kmodule"
+  when: sysdig_agent_driver_type == "kmodule"
   block:
     - name: Add epel GPG key
       ansible.builtin.rpm_key:

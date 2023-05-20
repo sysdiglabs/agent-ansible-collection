@@ -1,20 +1,25 @@
 ---
+- name: Set facts
+  ansible.builtin.set_fact:
+    sysdig_agent_version: "{{ configuration | toAgentVersion }}"
+    sysdig_agent_driver_type: "{{ configuration | toAgentDriverType | lower }}"
+    sysdig_agent_install_probe_build_dependencies: "{{ configuration | toAgentInstallProbeBuildDependencies | bool }}"
+
 - name: Install Sysdig Agent
-  when: install_sysdig_agent
   block:
     - name: Validate Environment
       ansible.builtin.include_tasks: agent/validations/platforms.yml
 
     - name: Install Dependencies
       ansible.builtin.include_tasks: agent/dependencies/{{ ansible_distribution | lower }}/install-{{ ansible_distribution | lower }}-dependencies.yml
-      when: sysdig_agent_install_build_dependencies
+      when: sysdig_agent_install_probe_build_dependencies
 
     - name: Configure Sysdig Agent Repository
       ansible.builtin.include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-repository.yml"
 
     - name: Install Sysdig Agent
       ansible.builtin.package:
-        name: "draios-agent{% if ansible_pkg_mgr == 'apt' %}={{ sysdig_agent_version }}{% else %}-{{ sysdig_agent_version }}{% endif %}"
+        name: "draios-agent{% if ansible_pkg_mgr == 'apt' %}={% else %}-{% endif %}{{ sysdig_agent_version }}"
         state: present
 
     - name: Create dragent.yaml file
@@ -26,7 +31,7 @@
         mode: 0644
 
     - name: Enable eBPF
-      when: sysdig_agent_driver | lower == "ebpf"
+      when: sysdig_agent_driver_type == "ebpf"
       block:
         - name: (eBPF) Enable eBPF probe
           ansible.builtin.lineinfile:
@@ -59,7 +64,7 @@
         path: /etc/sysconfig/dragent
         regexp: SYSDIG_BPF_PROBE
         state: absent
-      when: sysdig_agent_driver == "kmodule"
+      when: sysdig_agent_driver_type == "kmodule"
 
     - name: Start dragent Service
       block:
