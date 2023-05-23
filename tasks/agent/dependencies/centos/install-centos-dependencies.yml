@@ -31,4 +31,4 @@
   ansible.builtin.yum:
     name: clang,llvm
     state: present
-  when: sysdig_agent_driver | lower == "ebpf"
+  when: sysdig_agent_driver_type | lower == "ebpf"

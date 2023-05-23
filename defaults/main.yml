@@ -2,12 +2,40 @@
 # defaults file for ansible-sysdig
 role_version: 0.0.1
 
-sysdig_agent_access_key: llsdkjfsdlfj
-sysdig_api_key: 2398423948
-sysdig_region: us1
-sysdig_proxy:
-sysdig_agent_install_build_dependencies: false
-sysdig_agent_mode: platform
-sysdig_agent_settings: ""
-sysdig_agent_driver: "kmodule"
-sysdig_agent_version: "12.12.1"
+features:
+  monitoring:
+    app_checks: ~
+    jmx: ~
+    statsd: ~
+    prometheus: ~
+  security:
+    activity_audit: ~
+    captures: ~
+    drift_detection: ~
+    falcobaseline: ~
+    memdumper: ~
+configuration:
+  monitoring: standard
+  security: standard
+  connection:
+    access_key: ~
+    region: ~
+    custom_collector:
+      url: ~
+      port: ~
+    network_proxy:
+      host: ~
+      port: ~
+      username: ~
+      password: ~
+      ssl_enabled: ~
+      ssl_verify_certificate: ~
+      ca_certificate_path: ~
+  agent:
+    driver:
+      type: kmodule
+      location: ~
+      install_build_dependencies: false
+    override: ~
+    version: 12.14.1
+
