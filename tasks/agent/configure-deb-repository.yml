@@ -5,6 +5,14 @@
     dest: /etc/apt/trusted.gpg.d/sysdig.asc
     mode: 0o644
 
-- name: (deb) Configure Sysdig Agent Repository
+- name: (deb) Remove a legacy Sysdig repository configurations
+  ansible.builtin.apt_repository:
+    repo: "deb https://download.sysdig.com/stable/deb stable-$(ARCH)/"
+    filename: draios
+    state: absent
+
+- name: (deb) Configure Sysdig Repository
   ansible.builtin.apt_repository:
     repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/sysdig.asc] https://download.sysdig.com/stable/deb stable-amd64/"
+    filename: sysdig
+    state: present
