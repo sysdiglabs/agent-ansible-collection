@@ -131,6 +131,15 @@ argument_specs:
                 type: dict
                 required: false
                 description: "Legacy Sysdig App Check configuration."
+                options:
+                  enabled:
+                    type: bool
+                    required: false
+                    description: "Enable or disable legacy App Checks"
+                  applications:
+                    type: list
+                    required: false
+                    description: "Configurations for App Check modules"
               jmx:
                 type: dict
                 required: false
@@ -164,7 +173,7 @@ argument_specs:
                 type: dict
                 required: false
                 description: "Sysdig Secure Falco Baseliner configuration"
-              memdumper:
+              memdump:
                 type: dict
                 required: false
                 description: "Sysdig Secure Memdumper configuration"
