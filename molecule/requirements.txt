@@ -1,7 +1,8 @@
-boto3==1.26.122
-botocore==1.29.122
 ansible-core==2.14.5
 ansible-lint==6.16.0
+boto3==1.26.122
+botocore==1.29.122
+envsubst==0.1.5
 molecule==5.0.1
 molecule-plugins[ec2]==23.4.1
 pytest-testinfra==7.0.0
