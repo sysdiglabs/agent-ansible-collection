@@ -48,9 +48,12 @@ jobs:
 
       - name: Expand templates for CI
         run: |
-          find -path "*/molecule/*/molecule.yml.template" | xargs -L1 -- bash -c 'envsubst < $0 > ${0%.template}'
+          find -path "*/molecule/*/*.yml.template" | xargs -L1 -- bash -c 'envsubst < $0 > ${0%.template}'
         shell: bash
         env:
+          AGENT_ACCESS_KEY: ${{ secrets.AGENT_ACCESS_KEY }}
+          COLLECTOR_URL: ${{ secrets.COLLECTOR_URL }}
+          COLLECTOR_PORT: ${{ secrets.COLLECTOR_PORT }}
           INSTANCE_TYPE: ${{ secrets.INSTANCE_TYPE }}
           REGION: ${{ secrets.REGION }}
           VPC_SUBNET_ID: ${{ secrets.VPC_SUBNET_ID }}
