@@ -64,7 +64,7 @@
         label: "{{ platform.name }}"
   tasks:
     - name: Look up subnets to determine VPCs (if needed)
-      ec2_vpc_subnet_info:
+      amazon.aws.ec2_vpc_subnet_info:
         subnet_ids: "{{ item.vpc_subnet_id }}"
       loop: "{{ platforms }}"
       loop_control:
@@ -83,7 +83,7 @@
         label: "{{ platform.name }}"
 
     - name: Destroy ephemeral EC2 instances
-      ec2_instance:
+      amazon.aws.ec2_instance:
         profile: "{{ item.aws_profile | default(omit) }}"
         region: "{{ item.region | default(omit) }}"
         instance_ids: "{{ instance_config | map(attribute='instance_ids') | flatten }}"
@@ -113,7 +113,7 @@
         content: "{{ {} | to_yaml }}"
 
     - name: Destroy ephemeral security groups (if needed)
-      ec2_group:
+      amazon.aws.ec2_group:
         profile: "{{ item.aws_profile | default(omit) }}"
         region: "{{ item.region | default(omit) }}"
         vpc_id: "{{ item.vpc_id or vpc_subnet.vpc_id }}"
