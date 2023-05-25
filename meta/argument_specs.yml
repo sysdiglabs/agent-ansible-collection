@@ -176,4 +176,4 @@ argument_specs:
               memdump:
                 type: dict
                 required: false
-                description: "Sysdig Secure Memdumper configuration"
+                description: "Sysdig Secure Memdump configuration"

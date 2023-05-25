@@ -13,7 +13,7 @@ features:
     captures: ~
     drift_detection: ~
     falcobaseline: ~
-    memdumper: ~
+    memdump: ~
 configuration:
   monitoring: standard
   security: standard
