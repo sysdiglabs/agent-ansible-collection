@@ -14,3 +14,6 @@
             custom_collector:
               url: ${COLLECTOR_URL}
               port: ${COLLECTOR_PORT}
+          agent:
+            driver:
+              install_build_dependencies: true
