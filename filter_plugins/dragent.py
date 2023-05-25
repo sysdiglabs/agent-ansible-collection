@@ -162,15 +162,15 @@ class DragentMonitorSettings(DragentSettings):
                                           features=config["features"].get("monitoring", {}))
 
     def generate(self) -> dict:
+        ret = self._get_config(["app_checks", "jmx", "prometheus", "statsd"])
         if not self.config.is_enabled():
-            ret = {"app_checks_enabled": False}
             ret.update({feature: {"enabled": False} for feature in [
+                "app_checks",
                 "jmx",
                 "prometheus",
                 "statsd"
             ]})
-            return ret
-        return self._get_config(["app_checks", "jmx", "prometheus", "statsd"])
+        return ret
 
 
 class DragentSecureSettings(DragentSettings):
@@ -180,17 +180,30 @@ class DragentSecureSettings(DragentSettings):
                                          features=config["features"].get("security", {}))
 
     def generate(self) -> dict:
+        disabled_features = []
         if not self.config.is_enabled():
-            return {feature: {"enabled": False} for feature in [
+            disabled_features.extend([
                 "commandlines_capture",
                 "drift_control",
                 "drift_killer",
                 "falcobaseline",
                 "memdump",
+                "network_topology",
                 "secure_audit_streams"
-            ]}
-        return self._get_config(["commandlines_capture", "drift_detection",
-                                 "falcobaseline", "memdumper", "secure_audit_streams"])
+            ])
+        if self.config.type() == "light":
+            disabled_features.extend([
+                "drift_control",
+                "drift_killer",
+                "falcobaseline",
+                "memdump",
+                "network_topology"
+            ])
+
+        res = self._get_config(["commandlines_capture", "drift_detection",
+                                "falcobaseline", "memdumper", "secure_audit_streams"])
+        res.update({feature: {"enabled": False} for feature in disabled_features})
+        return res
 
 
 class DragentExtraSettings(DragentSettings):
@@ -217,11 +230,30 @@ class Dragent:
             DragentExtraSettings(config=config)
         ]
 
+    @staticmethod
+    def _patch_configuration(config: dict) -> dict:
+        if not config.get("app_checks"):
+            return config
+
+        if "enabled" in config["app_checks"]:
+            config.update({"app_checks_enabled": config["app_checks"]["enabled"]})
+
+            if not config["app_checks"]["enabled"]:
+                del config["app_checks"]
+            else:
+                del config["app_checks"]["enabled"]
+
+        if config.get("app_checks", {}).get("applications"):
+            config["app_checks"] = config["app_checks"]["applications"]
+
+        return config
+
     def generate(self) -> dict:
         ret = {}
         for config_type in self._config_types:
             ret.update(config_type.generate())
-        return ret
+
+        return self._patch_configuration(ret)
 
 
 def to_dragent_configuration(data):
