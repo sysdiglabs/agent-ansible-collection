@@ -29,6 +29,6 @@
 
 - name: (CentOS) Install eBPF dependencies
   ansible.builtin.yum:
-    name: clang,llvm
+    name: clang,elfutils-libelf-devel,llvm
     state: present
   when: sysdig_agent_driver_type | lower == "ebpf"
