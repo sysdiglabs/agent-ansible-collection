@@ -42,7 +42,8 @@
             mode: 0o644
 
         - name: (eBPF) Determine if sysdigcloud_probe module is loaded
-          ansible.builtin.command: >
+          ansible.builtin.shell: |
+            set -o pipefail
             lsmod | grep sysdigcloud_probe && echo -n LOADED || echo -n NOT_LOADED
           register: probe_loaded
           changed_when: probe_loaded.stdout == 'LOADED'
