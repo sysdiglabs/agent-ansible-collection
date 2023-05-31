@@ -17,5 +17,4 @@
           agent:
             driver:
               install_build_dependencies: true
-              type: kmodule
-
+              type: ebpf
