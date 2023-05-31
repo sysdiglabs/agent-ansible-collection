@@ -9,19 +9,7 @@
         name: python3
         state: present
 
-    - name: Update Systems
-      ansible.builtin.yum:
-        name: "*"
-        state: latest
-      when: ansible_pkg_mgr in ['dnf', 'yum']
-
-    - name: Update Systems
+    - name: Update apt cache
       ansible.builtin.apt:
-        name: "*"
         update_cache: true
-        state: latest
-      when: ansible_pkg_mgr == "apt"
-
-    - name: Reboot
-      reboot:
-        reboot_timeout: 3600
+      when: ansible_distribution == "Debian"
