@@ -173,7 +173,3 @@ argument_specs:
                 type: dict
                 required: false
                 description: "Sysdig Secure Falco Baseliner configuration"
-              memdump:
-                type: dict
-                required: false
-                description: "Sysdig Secure Memdump configuration"

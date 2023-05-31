@@ -62,10 +62,6 @@ class UserSecureSettings(UserPlanSettings):
     def falcobaseline(self) -> dict:
         return self._features.get("falcobaseline", {})
 
-    @property
-    def memdump(self) -> dict:
-        return self._features.get("memdump", {})
-
 
 class UserConnectionSettings(UserSettings):
     @property
@@ -187,7 +183,6 @@ class DragentSecureSettings(DragentSettings):
                 "drift_control",
                 "drift_killer",
                 "falcobaseline",
-                "memdump",
                 "network_topology",
                 "secure_audit_streams"
             ])
@@ -196,12 +191,11 @@ class DragentSecureSettings(DragentSettings):
                 "drift_control",
                 "drift_killer",
                 "falcobaseline",
-                "memdump",
                 "network_topology"
             ])
 
         res = self._get_config(["commandlines_capture", "drift_detection",
-                                "falcobaseline", "memdump", "secure_audit_streams"])
+                                "falcobaseline", "secure_audit_streams"])
         res.update({feature: {"enabled": False} for feature in disabled_features})
         return res
 
