@@ -169,7 +169,7 @@ argument_specs:
                 type: dict
                 required: false
                 description: "Sysdig Secure Drift Detection configuration."
-              falcobaseline:
+              profiling:
                 type: dict
                 required: false
-                description: "Sysdig Secure Falco Baseliner configuration"
+                description: "Sysdig Secure Profiling configuration"
