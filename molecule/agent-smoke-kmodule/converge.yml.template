@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include tools-install-ansible"
+      include_role:
+        name: "tools-install-ansible"
+        apply:
+          become: true
+      vars:
+        configuration:
+          connection:
+            access_key: ${AGENT_ACCESS_KEY}
+            custom_collector:
+              url: ${COLLECTOR_URL}
+              port: ${COLLECTOR_PORT}
+          agent:
+            driver:
+              install_build_dependencies: true
+              type: kmodule
+

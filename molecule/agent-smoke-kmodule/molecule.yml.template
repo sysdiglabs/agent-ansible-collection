@@ -55,11 +55,15 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
 provisioner:
-  name: ansible
   lint:
     name: ansible-lint
+  name: ansible
+  playbooks:
+    create: ../resources/playbooks/create.yml
+    destroy: ../resources/playbooks/destroy.yml
+    prepare: ../resources/playbooks/prepare.yml
 scenario:
-  name: agent
+  name: agent-smoke-kmodule
   create_sequence:
     - create
     - prepare
@@ -77,3 +81,5 @@ scenario:
     - destroy
 verifier:
   name: testinfra
+  additional_files_or_dirs:
+    - ../../resources/tests/integration/basic

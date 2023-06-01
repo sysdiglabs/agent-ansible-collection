@@ -25,6 +25,9 @@ jobs:
         run: ansible-lint tasks/
 
   test-branch:
+    strategy:
+      matrix:
+        scenario: [ "agent-smoke-kmodule", "agent-smoke-ebpf" ]
     runs-on: ubuntu-latest
     # These permissions are needed to interact with GitHub's OIDC Token endpoint.
     permissions:
@@ -67,4 +70,4 @@ jobs:
 
       - name: Run Molecule tests
         run: |
-          molecule test -s agent
+          molecule test -s ${{ matrix.scenario }}
