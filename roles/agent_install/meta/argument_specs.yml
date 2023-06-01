@@ -25,10 +25,6 @@ argument_specs:
             type: dict
             required: true
             description: "Network information necessary transmit data to Sysdig"
-            required_one_of:
-              - ['region', 'custom_collector']
-            mutually_exclusive:
-              - ['region', 'custom_collector']
             options:
               access_key:
                 type: str
