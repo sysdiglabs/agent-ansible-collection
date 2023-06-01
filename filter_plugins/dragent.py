@@ -60,7 +60,7 @@ class UserSecureSettings(UserPlanSettings):
 
     @property
     def falcobaseline(self) -> dict:
-        return self._features.get("falcobaseline", {})
+        return self._features.get("profiling", {})
 
 
 class UserConnectionSettings(UserSettings):

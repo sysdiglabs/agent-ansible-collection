@@ -12,7 +12,7 @@ features:
     activity_audit: ~
     captures: ~
     drift_detection: ~
-    falcobaseline: ~
+    profiling: ~
 configuration:
   monitoring: standard
   security: standard
