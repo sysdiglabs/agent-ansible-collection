@@ -37,4 +37,3 @@ configuration:
       install_build_dependencies: false
     override: ~
     version: 12.14.1
-

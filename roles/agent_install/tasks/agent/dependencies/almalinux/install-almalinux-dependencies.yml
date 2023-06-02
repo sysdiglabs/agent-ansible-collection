@@ -1,17 +1,17 @@
-- name: (RockyLinux) Install Kernel Headers (8)
+- name: (AlmaLinux) Install Kernel Headers (8)
   ansible.builtin.dnf:
     name: "kernel-devel-{{ ansible_kernel }}"
     state: present
   when: ansible_distribution_major_version == "8"
 
-- name: (RockyLinux) Install Kernel Headers (9)
+- name: (AlmaLinux) Install Kernel Headers (9)
   ansible.builtin.dnf:
     name: kernel-devel-matched
     state: present
   when: ansible_distribution_major_version == "9"
 
-- name: (RockyLinux) Install epel and dkms
-  when: sysdig_agent_driver_type == "kmodule"
+- name: (AlmaLinux) Install epel and dkms
+  when: agent_install_driver_type == "kmodule"
   block:
     - name: Add epel GPG key
       ansible.builtin.rpm_key:

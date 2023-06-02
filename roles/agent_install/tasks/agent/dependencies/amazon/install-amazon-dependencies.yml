@@ -8,7 +8,7 @@
   ansible.builtin.yum:
     name: dkms
     state: present
-  when: sysdig_agent_driver_type == "kmodule"
+  when: agent_install_driver_type == "kmodule"
 
 - name: (Amazon Linux) Install chkconfig
   ansible.builtin.yum:
