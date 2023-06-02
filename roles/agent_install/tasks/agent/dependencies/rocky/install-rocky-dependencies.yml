@@ -25,3 +25,9 @@
       ansible.builtin.yum:
         name: dkms
         state: present
+
+- name: (RockyLinux) Install eBPF dependencies
+  ansible.builtin.yum:
+    name: clang,elfutils-libelf-devel,llvm
+    state: present
+  when: agent_install_driver_type | lower == "ebpf"
