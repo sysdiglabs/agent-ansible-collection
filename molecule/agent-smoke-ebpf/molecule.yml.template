@@ -13,6 +13,11 @@ platforms:
     instance_type: ${INSTANCE_TYPE}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 30
+          delete_on_termination: true
 #  - name: alma9
 #    image: ami-06bc84fafec254e1d
 #    instance_type: ${INSTANCE_TYPE}
