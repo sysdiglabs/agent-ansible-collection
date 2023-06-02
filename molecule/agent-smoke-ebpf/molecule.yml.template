@@ -8,6 +8,21 @@ lint: |
   ansible-lint tasks/agent
   yamllint tasks/agent
 platforms:
+  - name: alma8
+    image: ami-017cf0c1f7146f117
+    instance_type: ${INSTANCE_TYPE}
+    region: ${REGION}
+    vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 30
+          delete_on_termination: true
+#  - name: alma9
+#    image: ami-06bc84fafec254e1d
+#    instance_type: ${INSTANCE_TYPE}
+#    region: ${REGION}
+#    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: debian-10
     image: ami-09c5dc3046df4741f
     instance_type: ${INSTANCE_TYPE}
@@ -49,6 +64,16 @@ platforms:
     instance_type: ${INSTANCE_TYPE}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+  - name: rocky8
+    image: ami-0e63078428ec6a2e1
+    instance_type: ${INSTANCE_TYPE}
+    region: ${REGION}
+    vpc_subnet_id: ${VPC_SUBNET_ID}
+#  - name: rocky9
+#    image: ami-032d067e7f73e7519
+#    instance_type: ${INSTANCE_TYPE}
+#    region: ${REGION}
+#    vpc_subnet_id: ${VPC_SUBNET_ID}
 provisioner:
   lint:
     name: ansible-lint

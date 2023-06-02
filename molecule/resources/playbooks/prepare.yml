@@ -13,3 +13,14 @@
       ansible.builtin.apt:
         update_cache: true
       when: ansible_distribution == "Debian"
+
+    - name: Update Alma, Fedora, and Rocky kernels
+      ansible.builtin.dnf:
+        name: kernel
+        state: latest
+      register: update_kernel
+      when: ansible_distribution in ['AlmaLinux', 'Fedora', 'Rocky']
+
+    - name: Reboot systems after kernel update (if required)
+      ansible.builtin.reboot:
+      when: update_kernel.changed
