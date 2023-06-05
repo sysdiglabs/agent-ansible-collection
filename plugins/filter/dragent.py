@@ -64,6 +64,15 @@ class UserSecureSettings(UserPlanSettings):
 
 
 class UserConnectionSettings(UserSettings):
+    REGION_MAP = {
+        "us1": "collector.sysdigcloud.com",
+        "us2": "ingest-us2.app.sysdig.com",
+        "us3": "ingest.us3.sysdig.com",
+        "us4": "ingest.us4.sysdig.com",
+        "eu1": "ingest-eu1.app.sysdig.com",
+        "au1": "ingest.au1.sysdig.com"
+    }
+
     @property
     def customerid(self) -> str:
         return self._configuration["access_key"]
@@ -74,7 +83,13 @@ class UserConnectionSettings(UserSettings):
 
     @property
     def collector(self) -> str:
-        return self._configuration.get("custom_collector", {}).get("url")
+        if "custom_collector" in self._configuration:
+            return self._configuration.get("custom_collector", {}).get("url", "please-provide-collector-url")
+        elif "region" in self._configuration:
+            region = self._configuration.get("region", "")
+            return UserConnectionSettings.REGION_MAP[region]\
+                if region in UserConnectionSettings.REGION_MAP \
+                else "unknown-region-{}-specified".format(region)
 
     @property
     def collector_port(self) -> int:
