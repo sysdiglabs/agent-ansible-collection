@@ -64,4 +64,8 @@ issues: https://github.com/sysdiglabs/agent-ansible-collection/issues
 # uses 'fnmatch' to match the files or directories. Some directories and files like 'galaxy.yml', '*.pyc', '*.retry',
 # and '.git' are always filtered. Mutually exclusive with 'manifest'
 build_ignore:
-  - '.git'
+  - .git
+  - .idea
+  - venv
+  - .yamllint
+
