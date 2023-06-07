@@ -1,0 +1,34 @@
+- name: (RHEL) Install Kernel Headers (7/8)
+  ansible.builtin.yum:
+    name: "kernel-devel-{{ ansible_kernel }}"
+    state: present
+  when: ansible_distribution_major_version in ["7", "8"]
+
+- name: (RHEL) Install Kernel Headers (9)
+  ansible.builtin.dnf:
+    name: kernel-devel-matched
+    state: present
+  when: ansible_distribution_major_version in ["9"]
+
+- name: (RHEL) Install epel and dkms
+  when: agent_install_driver_type == "kmodule"
+  block:
+    - name: (RHEL) Add epel GPG key
+      ansible.builtin.rpm_key:
+        key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+
+    - name: (RHEL) Install epel
+      ansible.builtin.yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+        state: present
+
+    - name: (RHEL) Install dkms
+      ansible.builtin.yum:
+        name: dkms
+        state: present
+
+- name: (RHEL) Install eBPF dependencies
+  ansible.builtin.yum:
+    name: clang,elfutils-libelf-devel,llvm
+    state: present
+  when: agent_install_driver_type | lower == "ebpf"
