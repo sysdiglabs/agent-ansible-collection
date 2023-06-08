@@ -45,7 +45,7 @@
           ansible.builtin.shell:
             cmd: |
               set -o pipefail
-              lsmod | grep sysdigcloud_probe && echo -n LOADED || echo -n NOT_LOADED
+              lsmod | grep -q sysdigcloud_probe && echo -n LOADED || echo -n NOT_LOADED
             executable: bash
           register: agent_install_probe_loaded
           changed_when: agent_install_probe_loaded.stdout == 'LOADED'
