@@ -65,7 +65,9 @@ issues: https://github.com/sysdiglabs/agent-ansible-collection/issues
 # and '.git' are always filtered. Mutually exclusive with 'manifest'
 build_ignore:
   - .git
+  - .github
   - .idea
+  - molecule
   - venv
   - .yamllint
 
