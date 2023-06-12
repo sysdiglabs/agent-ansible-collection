@@ -113,6 +113,37 @@ argument_specs:
                 type: str
                 required: false
                 description: "Sysdig Agent version to install"
+          repository:
+            type: dict
+            required: false
+            description: "Custom package repository configuration details"
+            options:
+              rpm:
+                type: dict
+                required: false
+                description: "Custom package repository configuration details for RPMs"
+                options:
+                  url:
+                    type: str
+                    required: true
+                    description: "URL of the custom RPM repository"
+                  gpg_key:
+                    type: str
+                    required: true
+                    description: "URL of the GPG key used to sign the RPM packages"
+              deb:
+                type: dict
+                required: false
+                description: "Custom package repository configuration details for deb packages"
+                options:
+                  url:
+                    type: str
+                    required: true
+                    description: "URL of the custom deb repository"
+                  gpg_key:
+                    type: str
+                    required: true
+                    description: "URL of the GPG key used to sign the deb packages"
       features:
         type: dict
         required: false

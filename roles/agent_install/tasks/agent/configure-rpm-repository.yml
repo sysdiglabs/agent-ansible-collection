@@ -1,7 +1,7 @@
 ---
 - name: (rpm) Configure Sysdig Agent Repository
   ansible.builtin.yum_repository:
-    baseurl: https://download.sysdig.com/stable/rpm/$basearch
+    baseurl: "{{ agent_install_rpm_repository_url }}"
     description: Sysdig Agent Repository
-    gpgkey: https://download.sysdig.com/DRAIOS-GPG-KEY.public
+    gpgkey: "{{ agent_install_rpm_repository_gpgkey }}"
     name: draios

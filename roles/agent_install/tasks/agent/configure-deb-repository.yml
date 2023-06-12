@@ -1,7 +1,7 @@
 ---
 - name: (deb) Add Sysdig gpg Key
   ansible.builtin.get_url:
-    url: https://download.sysdig.com/DRAIOS-GPG-KEY.public
+    url: "{{ agent_install_deb_repository_gpgkey }}"
     dest: /etc/apt/trusted.gpg.d/sysdig.asc
     mode: 0o644
 
@@ -13,6 +13,6 @@
 
 - name: (deb) Configure Sysdig Repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/sysdig.asc] https://download.sysdig.com/stable/deb stable-amd64/"
+    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/sysdig.asc] {{ agent_install_deb_repository_url }} stable-amd64/"
     filename: sysdig
     state: present
