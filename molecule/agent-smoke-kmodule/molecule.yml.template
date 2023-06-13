@@ -10,68 +10,79 @@ lint: |
 platforms:
   - name: alma8
     image: ami-017cf0c1f7146f117
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: alma9
     image: ami-06bc84fafec254e1d
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: debian-10
     image: ami-09c5dc3046df4741f
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: debian-11
     image: ami-01e5ff16fd6e8c542
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-1804
     image: ami-092d086e9437633d7
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2004
     image: ami-0f57ffe8bd04fa66d
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-2204
+  - name: ubuntu-2204-x86
     image: ami-053b0d53c279acc90
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
+    region: ${REGION}
+    vpc_subnet_id: ${VPC_SUBNET_ID}
+  - name: ubuntu-2204-aarch
+    image: ami-02dd4bca4caaab354
+    instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: amzn2
     image: ami-0bef6cc322bfff646
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: al2023
     image: ami-0715c1897453cabd1
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: centos7
     image: ami-0aedf6b1cb669b4c7
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: centos8
+  - name: centos8-x86
     boot_wait_seconds: 180
     image: ami-03dbb661dc3a9b6a5
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
+    region: ${REGION}
+    vpc_subnet_id: ${VPC_SUBNET_ID}
+  - name: centos8-aarch
+    boot_wait_seconds: 180
+    image: ami-0fbdd12bd5a9c2e6f
+    instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: rocky8
     image: ami-0e63078428ec6a2e1
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: rocky9
     image: ami-032d067e7f73e7519
-    instance_type: ${INSTANCE_TYPE}
+    instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
 provisioner:
