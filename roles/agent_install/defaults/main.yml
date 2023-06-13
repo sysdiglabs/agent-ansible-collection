@@ -37,3 +37,10 @@ configuration:
       install_build_dependencies: false
     override: ~
     version: 12.14.1
+  repository:
+    deb:
+      url: ~
+      gpg_key: ~
+    rpm:
+      url: ~
+      gpg_key: ~

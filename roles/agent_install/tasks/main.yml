@@ -4,6 +4,10 @@
     agent_install_version: "{{ configuration | sysdig.agent.toAgentVersion }}"
     agent_install_driver_type: "{{ configuration | sysdig.agent.toAgentDriverType | lower }}"
     agent_install_probe_build_dependencies: "{{ configuration | sysdig.agent.toAgentInstallProbeBuildDependencies | bool }}"
+    agent_install_deb_repository_url: "{{ configuration | sysdig.agent.toDebUrl | default('https://download.sysdig.com/stable/deb', true) }}"
+    agent_install_deb_repository_gpgkey: "{{ configuration | sysdig.agent.toDebGpgKey | default('https://download.sysdig.com/DRAIOS-GPG-KEY.public', true) }}"
+    agent_install_rpm_repository_url: "{{ configuration | sysdig.agent.toRpmUrl | default('https://download.sysdig.com/stable/rpm/$basearch', true) }}"
+    agent_install_rpm_repository_gpgkey: "{{ configuration | sysdig.agent.toRpmGpgKey | default('https://download.sysdig.com/DRAIOS-GPG-KEY.public', true) }}"
 
 - name: Install Sysdig Agent
   block:
