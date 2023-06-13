@@ -51,7 +51,8 @@ jobs:
           AGENT_ACCESS_KEY: ${{ secrets.AGENT_ACCESS_KEY }}
           COLLECTOR_URL: ${{ secrets.COLLECTOR_URL }}
           COLLECTOR_PORT: ${{ secrets.COLLECTOR_PORT }}
-          INSTANCE_TYPE: ${{ secrets.INSTANCE_TYPE }}
+          INSTANCE_TYPE_AARCH: ${{ secrets.INSTANCE_TYPE_AARCH }}
+          INSTANCE_TYPE_X86: ${{ secrets.INSTANCE_TYPE_X86 }}
           REGION: ${{ secrets.REGION }}
           VPC_SUBNET_ID: ${{ secrets.VPC_SUBNET_ID }}
           SHOW_USAGE: false
