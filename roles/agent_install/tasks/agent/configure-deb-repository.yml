@@ -13,6 +13,6 @@
 
 - name: (deb) Configure Sysdig Repository
   ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/sysdig.asc] {{ agent_install_deb_repository_url }} stable-amd64/"
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/sysdig.asc] {{ agent_install_deb_repository_url }} stable-$(ARCH)/"
     filename: sysdig
     state: present
