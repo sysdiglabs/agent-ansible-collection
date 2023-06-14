@@ -1,0 +1,5 @@
+---
+# defaults file for agent_uninstall
+retain_agent_configuration: true
+retain_agent_logs: true
+retain_agent_repository_configuration: true

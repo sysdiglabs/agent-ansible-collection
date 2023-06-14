@@ -1,0 +1,5 @@
+---
+- name: (rpm) Remove Sysdig Repository Configuration
+  ansible.builtin.yum_repository:
+    name: draios
+    state: absent

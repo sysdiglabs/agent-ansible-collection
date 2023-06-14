@@ -1,0 +1,11 @@
+---
+- name: (deb) Remove Sysdig Repository Public Key
+  ansible.builtin.file:
+    path: "/etc/apt/trusted.gpg.d/sysdig.asc"
+    state: absent
+
+- name: (deb) Remove Sysdig Repository Configuration
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/sysdig.asc] {{ agent_install_deb_repository_url }} stable-$(ARCH)/"
+    filename: sysdig
+    state: absent
