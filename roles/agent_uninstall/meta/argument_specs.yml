@@ -1,0 +1,18 @@
+---
+argument_specs:
+  # tasks/main.yml entry point
+  main:
+    short_description: Sysdig Ansible Role
+    options:
+      retain_agent_configuration:
+        type: bool
+        required: true
+        description: "Keep the various Sysdig Agent configuration files after package removal"
+      retain_agent_logs:
+        type: bool
+        required: true
+        description: "Keep the Sysdig Agent logs after package removal"
+      retain_agent_repository_configuration:
+        type: bool
+        required: true
+        description: "Keep the Sysdig Agent package repository configured after package removal"

@@ -1,0 +1,51 @@
+---
+# tasks file for agent_uninstall
+- name: Get Host Service Facts
+  ansible.builtin.service_facts:
+
+- name: Stop Agent Service
+  ansible.builtin.service:
+    name: dragent
+    state: stopped
+  when:
+    - "'dragent.service' in services"
+    - services["dragent.service"].state == 'running'
+
+- name: Remove Sysdig Agent Package
+  ansible.builtin.package:
+    name: draios-agent
+    state: absent
+
+- name: Cleanup Sysdig Agent Service Files
+  ansible.builtin.file:
+    path: "/run/systemd/generator.late/dragent.service"
+    state: absent
+
+- name: Remove Sysdig Agent Configuration
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/opt/draios/etc"
+    - "/opt/draios/run"
+    - "/opt/draios/infrastate"
+    - "/opt/draios/lib"
+  when: not retain_agent_configuration
+
+- name: Remove Sysdig Agent Logs
+  ansible.builtin.file:
+    path: "/opt/draios/logs"
+    state: absent
+  when: not retain_agent_logs
+
+- name: Remove Sysdig Agent Package Repository
+  ansible.builtin.include_tasks: remove-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-configuration.yml
+  when: not retain_agent_repository_configuration
+
+- name: Remove /opt/draios/ folder (if necessary)
+  ansible.builtin.file:
+    path: "/opt/draios"
+    state: absent
+  when:
+    - not retain_agent_configuration
+    - not retain_agent_logs
