@@ -10,18 +10,11 @@ Accepted
 This repository is new, and as such has not had a formal release process defined.
 In order to achieve predictable, reliable releases, the following will need to
 be defined:
-* How to indicate a Release
 * Release Cadence
 * Branching Strategy
 * Release Candidate Process
 
 ## Decision
-### How to indicate a Release
-Releases will be indicated by placing a tag containing the release's version
-number on the desired commit. Tags will follow
-[semantic versioning](https://semver.org/). This process will hold true for any
-release type; major, minor, or hotfix. Those tags can then be checked out,
-built, and published to the Ansible Galaxy.
 ### Release Cadence
 #### Regular Releases
 The Ansible Collection will be release at the same time as the Sysdig Agent.
@@ -45,7 +38,7 @@ they are required without hesitation.
 The Ansible Collection will do all development on the `main` branch. All new
 commits must first be merged to the `main` branch before anywhere else. When
 a new major version release is to be made a corresponding branch will be
-created with the following format, `releases/v<major_version>.<minor_version>`.
+created with the following format, `releases/<major_version>.<minor_version>`.
 ```mermaid
   gitGraph:
     commit
@@ -117,7 +110,7 @@ look like the following:
 The release process will involve the generation and testing of release
 candidates. Release candidates of the Collection will be indicated by the use
 of a special release candidate tag. The format of such tags will be
-`<major_version>.<minor_version>-rc<RC number>`. Concretely, an example of
+`<major_version>.<minor_version>.<patch_version>-rc<RC number>`. Concretely, an example of
 such a tag is `1.0.0-rc1`.
 ```mermaid
   gitGraph:
@@ -163,6 +156,4 @@ to ingest the Collection content by the Ansible Galaxy.
 
 ## Consequences
 * Any new content added to the Collection will not be available to users until
-  the next major release. This is different from how the `sysdig-deploy` helm
-  chart has operated where releases are done as soon as a merge to `main` has
-  been completed.
+  the next major release. 
