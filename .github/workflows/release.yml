@@ -1,0 +1,38 @@
+name: Release
+on:
+  push:
+    tags:
+      - '(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$'
+      - '(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-(rc(?:0|[1-9]\d*)*))$'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install Ansible
+        run: |
+          pip install ansible
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$tag" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
+              --generate-notes
+#
+#      - name: Publish the release
+#        run: |
+#          ansible-galaxy collection build
+#          ansible-galaxy collection publish --api-key ${{ secrets.GALAXY_API_KEY }} *.tar.gz
