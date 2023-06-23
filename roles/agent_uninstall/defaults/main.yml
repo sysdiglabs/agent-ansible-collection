@@ -3,3 +3,4 @@
 retain_agent_configuration: true
 retain_agent_logs: true
 retain_agent_repository_configuration: true
+agent_install_deb_repository_url: https://download.sysdig.com/stable/deb

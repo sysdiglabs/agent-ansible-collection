@@ -16,3 +16,7 @@ argument_specs:
         type: bool
         required: true
         description: "Keep the Sysdig Agent package repository configured after package removal"
+      agent_install_deb_repository_url:
+        type: str
+        required: false
+        description: "The Deb repository used to install the Sysdig Agent package"
