@@ -12,7 +12,7 @@ def to_agent_version(data):
     try:
         return data['agent']['version']
     except KeyError:
-        return "12.14.1"
+        return "latest"
 
 
 def to_agent_install_probe_build_dependencies(data):

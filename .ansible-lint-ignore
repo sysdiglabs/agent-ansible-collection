@@ -1,0 +1,1 @@
+roles/agent_install/tasks/main.yml package-latest

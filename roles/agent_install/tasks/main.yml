@@ -21,10 +21,20 @@
     - name: Configure Sysdig Agent Repository
       ansible.builtin.include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-repository.yml"
 
-    - name: Install Sysdig Agent
+    - name: Install Sysdig Agent (latest)
       ansible.builtin.package:
-        name: "draios-agent{% if ansible_pkg_mgr == 'apt' %}={% else %}-{% endif %}{{ agent_install_version }}"
+        name: draios-agent
+        state: latest
+      when: (not agent_install_version) or
+            (agent_install_version and (agent_install_version == 'latest' or agent_install_version == ""))
+
+    - name: Install Sysdig Agent (pinned)
+      ansible.builtin.package:
+        name: "draios-agent{% if agent_install_version != 'latest' %}{% if ansible_pkg_mgr == 'apt' %}={% else %}-{% endif %}{{ agent_install_version }}{% endif %}"
         state: present
+      when:
+        - agent_install_version
+        - agent_install_version != 'latest'
 
     - name: Create dragent.yaml file
       ansible.builtin.template:
