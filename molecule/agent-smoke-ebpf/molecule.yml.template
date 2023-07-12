@@ -33,6 +33,11 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+  - name: debian-12
+    image: ami-06db4d78cb1d3bbf9
+    instance_type: ${INSTANCE_TYPE_X86}
+    region: ${REGION}
+    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-1804
     image: ami-092d086e9437633d7
     instance_type: ${INSTANCE_TYPE_X86}
