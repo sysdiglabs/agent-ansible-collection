@@ -1,0 +1,44 @@
+---
+name: Update Molecule AMIs used for Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML, so you have to quote this string
+    # Run once a day
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: "write"
+  pull-requests: "write"
+
+jobs:
+  updatecli:
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        os:
+          - alma
+          - amazon
+          - centos
+          - debian
+          - rocky
+          - ubuntu
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Updatecli in the runner
+        uses: updatecli/updatecli-action@v2.32.0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.DRAIOS_GH_ACTIONS_ANSIBLE_MOLECULE_ROLE_ARN }}
+          aws-region: ${{ secrets.REGION }}
+
+      - name: Run Updatecli in apply mode
+        run: "updatecli apply --config .github/updatecli/config.yaml --values .github/updatecli/values.yaml"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          OS_TYPE: "${{ matrix.os }}"

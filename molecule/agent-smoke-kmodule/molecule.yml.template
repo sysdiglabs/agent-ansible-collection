@@ -63,11 +63,6 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: centos7
-    image: ami-0aedf6b1cb669b4c7
-    instance_type: ${INSTANCE_TYPE_X86}
-    region: ${REGION}
-    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: centos8-x86
     boot_wait_seconds: 180
     image: ami-03dbb661dc3a9b6a5
@@ -87,6 +82,11 @@ platforms:
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: rocky9
     image: ami-032d067e7f73e7519
+    instance_type: ${INSTANCE_TYPE_X86}
+    region: ${REGION}
+    vpc_subnet_id: ${VPC_SUBNET_ID}
+  - name: centos7
+    image: ami-0aedf6b1cb669b4c7
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
