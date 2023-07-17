@@ -1,5 +1,4 @@
 name: Release
-description: "Release a new version of the Collection"
 on:
   push:
     tags:
