@@ -1,0 +1,17 @@
+# ADR-0003 - Commit Messages Formatting
+
+## Feature
+N/A
+
+## Status
+Reviewing
+
+## Context
+Pull request titles and commit messages serve as vital references
+ to past developments, aiding future engineers in comprehending
+ the code, design and decisions, and in streamlining both the 
+ development cycles as well as the debugging processes.
+
+## Decision
+* For every commit, the commit message should include a type and scope. Check [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for example: 'feat(host): add the agent installation support for AL2023'.
+* Every pull request title must also respect the conventional commit rules so that a meaningful changelog will be automatically generated.
