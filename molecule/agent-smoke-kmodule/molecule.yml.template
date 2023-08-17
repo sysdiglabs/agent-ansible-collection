@@ -71,7 +71,7 @@ platforms:
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: centos8-aarch
     boot_wait_seconds: 180
-    image: ami-0fbdd12bd5a9c2e6f
+    image: ami-0f73c69bbec13afb1
     instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
