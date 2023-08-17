@@ -17,6 +17,9 @@ jobs:
   updatecli:
     runs-on: "ubuntu-latest"
     strategy:
+      # Run serially due to issue with updatecli that causes each parallel invocation
+      # to use the same branch name, which causes undesired behavior
+      max-parallel: 1
       matrix:
         os:
           - alma
