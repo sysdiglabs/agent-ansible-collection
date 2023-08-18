@@ -1,0 +1,55 @@
+# config.yaml
+name: Molecule AMI updater
+
+scms:
+  github:
+    kind: "github"
+    spec:
+      user: "updatecli"
+      email: "updatecli@sysdig.com"
+      owner: "sysdiglabs"
+      repository: "agent-ansible-collection"
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: draios-jenkins
+      branch: "main"
+
+actions:
+  ansible-molecule:
+    kind: "github/pullrequest"
+    scmid: "github"
+    spec:
+      automerge: true
+      description: "Update the AMIs used by Molecule to the latest available"
+      draft: false
+      mergemethod: squash
+      title: 'chore: update ${OS} AMI IDs'
+
+sources:
+  getAmi:
+    name: Get latest AMI for ${VARIANT}
+    kind: aws/ami
+    spec:
+      region: ${REGION}
+      sortby: creationdateasc
+      filters:
+        - name: "name"
+          values: ${IMAGE_NAME}
+        - name: "architecture"
+          values: ${ARCHITECTURE}
+        - name: "owner-id"
+          values: ${OWNER_ID}
+targets:
+  updateAmi:
+    name: "Update AMI for ${VARIANT}"
+    sourceid: getAmi
+    scmid: "github"
+    kind: yaml
+    spec:
+      files:
+        {{- if "${DRIVER}" == "ebpf" }}
+        - molecule/agent-smoke-ebpf/molecule.yml.template
+        {{- else if "${DRIVER}" == "kmodule" }}
+        - molecule/agent-smoke-kmodule/molecule.yml.template
+        - molecule/agent-uninstall-clean-all/molecule.yml.template
+        {{- end }}
+      key: "$.platforms[${MOLECULE_INDEX}].image"

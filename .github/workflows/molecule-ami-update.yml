@@ -9,25 +9,280 @@ on:
     - cron: '0 0 * * *'
 
 permissions:
-  contents: "write"
+  contents: write
   id-token: write
-  pull-requests: "write"
+  pull-requests: write
 
 jobs:
   updatecli:
     runs-on: "ubuntu-latest"
     strategy:
-      # Run serially due to issue with updatecli that causes each parallel invocation
-      # to use the same branch name, which causes undesired behavior
-      max-parallel: 1
       matrix:
-        os:
-          - alma
-          - amazon
-          - centos
-          - debian
-          - rocky
-          - ubuntu
+        platforms:
+          - os: alma
+            architecture: x86_64
+            driver: kmodule
+            image_name: "AlmaLinux OS 8*"
+            molecule_index: 0
+            owner_id: "764336703387"
+            task_name: Alma8-x86_64
+            variant: "Alma 8 (x86_64)"
+          - os: alma
+            architecture: x86_64
+            driver: ebpf
+            image_name: "AlmaLinux OS 8*"
+            molecule_index: 0
+            owner_id: "764336703387"
+            task_name: Alma8-x86_64
+            variant: "Alma 8 (x86_64)"
+          - os: alma
+            architecture: x86_64
+            driver: kmodule
+            image_name: "AlmaLinux OS 8*"
+            molecule_index: 0
+            owner_id: "764336703387"
+            task_name: Alma8-x86_64
+            variant: "Alma 8 (x86_64)"
+          - os: alma
+            architecture: x86_64
+            driver: ebpf
+            image_name: "AlmaLinux OS 8*"
+            molecule_index: 0
+            owner_id: "764336703387"
+            task_name: Alma8-x86_64
+            variant: "Alma 8 (x86_64)"
+          - os: alma
+            architecture: x86_64
+            driver: kmodule
+            image_name: "AlmaLinux OS 9*"
+            molecule_index: 1
+            owner_id: "764336703387"
+            task_name: Alma9-x86_64
+            variant: "Alma 9 (x86_64)"
+          - os: alma
+            architecture: x86_64
+            driver: ebpf
+            image_name: "AlmaLinux OS 9*"
+            molecule_index: 1
+            owner_id: "764336703387"
+            task_name: Alma9-x86_64
+            variant: "Alma 9 (x86_64)"
+          - os: amazon
+            architecture: x86_64
+            driver: kmodule
+            image_name: amzn2*
+            molecule_index: 9
+            owner_id: "137112412989"
+            task_name: Amzn2-x86_64
+            variant: "Amazon Linux 2 (x86_64)"
+          - os: amazon
+            architecture: x86_64
+            driver: ebpf
+            image_name: amzn2*
+            molecule_index: 9
+            owner_id: "137112412989"
+            task_name: Amzn2-x86_64
+            variant: "Amazon Linux 2 (x86_64)"
+          - os: amazon
+            architecture: x86_64
+            driver: kmodule
+            image_name: al2023-ami*
+            molecule_index: 10
+            owner_id: "137112412989"
+            task_name: AL2023-x86_64
+            variant: "Amazon Linux 2023 (x86_64)"
+          - os: amazon
+            architecture: x86_64
+            driver: ebpf
+            image_name: al2023-ami*
+            molecule_index: 10
+            owner_id: "137112412989"
+            task_name: AL2023-x86_64
+            variant: "Amazon Linux 2023 (x86_64)"
+          - os: centos
+            architecture: x86_64
+            driver: kmodule
+            image_name: "CentOS Linux 7 x86_64*"
+            molecule_index: 15
+            owner_id: "125523088429"
+            task_name: CentOS7-x86_64
+            variant: "CentOS 7 (x86_64)"
+          - os: centos
+            architecture: x86_64
+            driver: kmodule
+            image_name: "CentOS Stream 8 x86_64*"
+            molecule_index: 11
+            owner_id: "125523088429"
+            task_name: CentOS8-x86_64
+            variant: "CentOS Stream 8 (x86_64)"
+          - os: centos
+            architecture: x86_64
+            driver: ebpf
+            image_name: "CentOS Stream 8 x86_64*"
+            molecule_index: 11
+            owner_id: "125523088429"
+            task_name: CentOS8-x86_64
+            variant: "CentOS Stream 8 (x86_64)"
+          - os: centos
+            architecture: arm64
+            driver: kmodule
+            image_name: "CentOS Stream 8 aarch64*"
+            molecule_index: 12
+            owner_id: "125523088429"
+            task_name: CentOS8-arm64
+            variant: "CentOS Stream 8 (arm64)"
+          - os: centos
+            architecture: arm64
+            driver: ebpf
+            image_name: "CentOS Stream 8 aarch64*"
+            molecule_index: 12
+            owner_id: "125523088429"
+            task_name: CentOS8-arm64
+            variant: "CentOS Stream 8 (arm64)"
+          - os: debian
+            architecture: x86_64
+            driver: kmodule
+            image_name: "debian-10-amd64*"
+            molecule_index: 2
+            owner_id: "136693071363"
+            task_name: Debian10-x86_64
+            variant: "Debian 10 (x86_64)"
+          - os: debian
+            architecture: x86_64
+            driver: ebpf
+            image_name: "debian-10-amd64*"
+            molecule_index: 2
+            owner_id: "136693071363"
+            task_name: Debian10-x86_64
+            variant: "Debian 10 (x86_64)"
+          - os: debian
+            architecture: x86_64
+            driver: kmodule
+            image_name: "debian-11-amd64*"
+            molecule_index: 3
+            owner_id: "136693071363"
+            task_name: Debian11-x86_64
+            variant: "Debian 11 (x86_64)"
+          - os: debian
+            architecture: x86_64
+            driver: ebpf
+            image_name: "debian-11-amd64*"
+            molecule_index: 3
+            owner_id: "136693071363"
+            task_name: Debian11-x86_64
+            variant: "Debian 11 (x86_64)"
+          - os: debian
+            architecture: x86_64
+            driver: kmodule
+            image_name: "debian-12-amd64*"
+            molecule_index: 4
+            owner_id: "136693071363"
+            task_name: Debian12-x86_64
+            variant: "Debian 12 (x86_64)"
+          - os: debian
+            architecture: x86_64
+            driver: ebpf
+            image_name: "debian-12-amd64*"
+            molecule_index: 4
+            owner_id: "136693071363"
+            task_name: Debian12-x86_64
+            variant: "Debian 12 (x86_64)"
+          - os: rocky
+            architecture: x86_64
+            driver: kmodule
+            image_name: "Rocky-8-EC2-Base*"
+            molecule_index: 13
+            owner_id: "792107900819"
+            task_name: Rocky8-x86_64
+            variant: "Rocky 8 (x86_64)"
+          - os: rocky
+            architecture: x86_64
+            driver: ebpf
+            image_name: "Rocky-8-EC2-Base*"
+            molecule_index: 13
+            owner_id: "792107900819"
+            task_name: Rocky8-x86_64
+            variant: "Rocky 8 (x86_64)"
+          - os: rocky
+            architecture: x86_64
+            driver: kmodule
+            image_name: "Rocky-9-EC2-Base*"
+            molecule_index: 14
+            owner_id: "792107900819"
+            task_name: Rocky9-x86_64
+            variant: "Rocky 9 (x86_64)"
+          - os: rocky
+            architecture: x86_64
+            driver: ebpf
+            image_name: "Rocky-9-EC2-Base*"
+            molecule_index: 14
+            owner_id: "792107900819"
+            task_name: Rocky9-x86_64
+            variant: "Rocky 9 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: kmodule
+            image_name: ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server*
+            molecule_index: 5
+            owner_id: "099720109477"
+            task_name: Ubuntu1804-x86_64
+            variant: "Ubuntu 18.04 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: ebpf
+            image_name: ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server*
+            molecule_index: 5
+            owner_id: "099720109477"
+            task_name: Ubuntu1804-x86_64
+            variant: "Ubuntu 18.04 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: kmodule
+            image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
+            molecule_index: 6
+            owner_id: "099720109477"
+            task_name: Ubuntu2004-x86_64
+            variant: "Ubuntu 20.04 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: ebpf
+            image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
+            molecule_index: 6
+            owner_id: "099720109477"
+            task_name: Ubuntu2004-x86_64
+            variant: "Ubuntu 20.04 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: kmodule
+            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
+            molecule_index: 7
+            owner_id: "099720109477"
+            task_name: Ubuntu2204-x86_64
+            variant: "Ubuntu 22.04 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: ebpf
+            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
+            molecule_index: 7
+            owner_id: "099720109477"
+            task_name: Ubuntu2204-x86_64
+            variant: "Ubuntu 22.04 (x86_64)"
+          - os: ubuntu
+            architecture: arm64
+            driver: kmodule
+            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
+            molecule_index: 8
+            owner_id: "099720109477"
+            task_name: Ubuntu2204-arm64
+            variant: "Ubuntu 22.04 (arm64)"
+          - os: ubuntu
+            architecture: arm64
+            driver: ebpf
+            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
+            molecule_index: 8
+            owner_id: "099720109477"
+            task_name: Ubuntu2204-arm64
+            variant: "Ubuntu 22.04 (arm64)"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -41,8 +296,21 @@ jobs:
           role-to-assume: ${{ secrets.DRAIOS_GH_ACTIONS_ANSIBLE_MOLECULE_ROLE_ARN }}
           aws-region: ${{ secrets.REGION }}
 
+      - name: Substitute matrix vars
+        run: |
+          cat .github/updatecli/config.yaml.template | envsubst > .github/updatecli/config-${{ matrix.platforms.task_name }}.yaml
+        env:
+          TASK_NAME: ${{ matrix.platforms.task_name }}
+          VARIANT: ${{ matrix.platforms.variant }}
+          REGION: ${{ secrets.REGION }}
+          OS: ${{ matrix.platforms.os }}
+          ARCHITECTURE: ${{ matrix.platforms.architecture }}
+          OWNER_ID: ${{ matrix.platforms.owner_id }}
+          MOLECULE_INDEX: ${{ matrix.platforms.molecule_index }}
+          IMAGE_NAME: ${{ matrix.platforms.image_name }}
+          DRIVER: ${{ matrix.platforms.driver }}
+
       - name: Run Updatecli in apply mode
-        run: "updatecli apply --config .github/updatecli/config.yaml --values .github/updatecli/values.yaml"
+        run: "updatecli apply --config .github/updatecli/config-${{ matrix.platforms.task_name }}.yaml"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          OS_TYPE: "${{ matrix.os }}"
