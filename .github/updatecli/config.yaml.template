@@ -37,7 +37,7 @@ sources:
         - name: "architecture"
           values: ${ARCHITECTURE}
         - name: "owner-id"
-          values: ${OWNER_ID}
+          values: "${OWNER_ID}"
 targets:
   updateAmi:
     name: "Update AMI for ${VARIANT}"
@@ -46,9 +46,9 @@ targets:
     kind: yaml
     spec:
       files:
-        {{- if "${DRIVER}" == "ebpf" }}
+        {{- if eq "${DRIVER}" "ebpf" }}
         - molecule/agent-smoke-ebpf/molecule.yml.template
-        {{- else if "${DRIVER}" == "kmodule" }}
+        {{- else if eq "${DRIVER}" "kmodule" }}
         - molecule/agent-smoke-kmodule/molecule.yml.template
         - molecule/agent-uninstall-clean-all/molecule.yml.template
         {{- end }}
