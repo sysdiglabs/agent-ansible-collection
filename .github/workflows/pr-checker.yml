@@ -3,6 +3,8 @@ name: Lint and Test Collection Role Changes
 on:
   - pull_request
 
+concurrency: test-pr
+
 jobs:
   lint-branch:
     runs-on: ubuntu-latest
