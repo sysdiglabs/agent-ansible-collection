@@ -22,7 +22,7 @@ actions:
       description: "Update the AMIs used by Molecule to the latest available"
       draft: false
       mergemethod: squash
-      title: 'chore: update ${OS} ${ARCHITECTURE} AMI IDs for ${DRIVER} tests'
+      title: 'chore: update ${OS} ${ARCHITECTURE} images for ${DRIVER} tests'
 
 sources:
   getAmi:
@@ -38,6 +38,7 @@ sources:
           values: ${ARCHITECTURE}
         - name: "owner-id"
           values: "${OWNER_ID}"
+
 targets:
   updateAmi:
     name: "Update AMI for ${VARIANT}"

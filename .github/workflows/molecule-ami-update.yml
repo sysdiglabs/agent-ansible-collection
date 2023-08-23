@@ -267,6 +267,7 @@ jobs:
             owner_id: "099720109477"
             task_name: Ubuntu2204-arm64
             variant: "Ubuntu 22.04 (arm64)"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
