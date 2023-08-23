@@ -22,7 +22,7 @@ actions:
       description: "Update the AMIs used by Molecule to the latest available"
       draft: false
       mergemethod: squash
-      title: 'chore: update ${OS} AMI IDs'
+      title: 'chore: update ${OS} ${ARCHITECTURE} AMI IDs for ${DRIVER} tests'
 
 sources:
   getAmi:
