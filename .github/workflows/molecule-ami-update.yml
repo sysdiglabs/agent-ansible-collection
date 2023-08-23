@@ -38,22 +38,6 @@ jobs:
           - os: alma
             architecture: x86_64
             driver: kmodule
-            image_name: "AlmaLinux OS 8*"
-            molecule_index: 0
-            owner_id: "764336703387"
-            task_name: Alma8-x86_64
-            variant: "Alma 8 (x86_64)"
-          - os: alma
-            architecture: x86_64
-            driver: ebpf
-            image_name: "AlmaLinux OS 8*"
-            molecule_index: 0
-            owner_id: "764336703387"
-            task_name: Alma8-x86_64
-            variant: "Alma 8 (x86_64)"
-          - os: alma
-            architecture: x86_64
-            driver: kmodule
             image_name: "AlmaLinux OS 9*"
             molecule_index: 1
             owner_id: "764336703387"
