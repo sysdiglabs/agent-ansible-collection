@@ -87,42 +87,42 @@ jobs:
             architecture: x86_64
             driver: kmodule
             image_name: "CentOS Linux 7 x86_64*"
-            molecule_index: 15
+            molecule_index: 13
             owner_id: "125523088429"
             task_name: CentOS7-x86_64
             variant: "CentOS 7 (x86_64)"
-          - os: centos
-            architecture: x86_64
-            driver: kmodule
-            image_name: "CentOS Stream 8 x86_64*"
-            molecule_index: 11
-            owner_id: "125523088429"
-            task_name: CentOS8-x86_64
-            variant: "CentOS Stream 8 (x86_64)"
-          - os: centos
-            architecture: x86_64
-            driver: ebpf
-            image_name: "CentOS Stream 8 x86_64*"
-            molecule_index: 11
-            owner_id: "125523088429"
-            task_name: CentOS8-x86_64
-            variant: "CentOS Stream 8 (x86_64)"
-          - os: centos
-            architecture: arm64
-            driver: kmodule
-            image_name: "CentOS Stream 8 aarch64*"
-            molecule_index: 12
-            owner_id: "125523088429"
-            task_name: CentOS8-arm64
-            variant: "CentOS Stream 8 (arm64)"
-          - os: centos
-            architecture: arm64
-            driver: ebpf
-            image_name: "CentOS Stream 8 aarch64*"
-            molecule_index: 12
-            owner_id: "125523088429"
-            task_name: CentOS8-arm64
-            variant: "CentOS Stream 8 (arm64)"
+#          - os: centos
+#            architecture: x86_64
+#            driver: kmodule
+#            image_name: "CentOS Stream 8 x86_64*"
+#            molecule_index: 11
+#            owner_id: "125523088429"
+#            task_name: CentOS8-x86_64
+#            variant: "CentOS Stream 8 (x86_64)"
+#          - os: centos
+#            architecture: x86_64
+#            driver: ebpf
+#            image_name: "CentOS Stream 8 x86_64*"
+#            molecule_index: 11
+#            owner_id: "125523088429"
+#            task_name: CentOS8-x86_64
+#            variant: "CentOS Stream 8 (x86_64)"
+#          - os: centos
+#            architecture: arm64
+#            driver: kmodule
+#            image_name: "CentOS Stream 8 aarch64*"
+#            molecule_index: 12
+#            owner_id: "125523088429"
+#            task_name: CentOS8-arm64
+#            variant: "CentOS Stream 8 (arm64)"
+#          - os: centos
+#            architecture: arm64
+#            driver: ebpf
+#            image_name: "CentOS Stream 8 aarch64*"
+#            molecule_index: 12
+#            owner_id: "125523088429"
+#            task_name: CentOS8-arm64
+#            variant: "CentOS Stream 8 (arm64)"
           - os: debian
             architecture: x86_64
             driver: kmodule
@@ -175,7 +175,7 @@ jobs:
             architecture: x86_64
             driver: kmodule
             image_name: "Rocky-8-EC2-Base*"
-            molecule_index: 13
+            molecule_index: 11
             owner_id: "792107900819"
             task_name: Rocky8-x86_64
             variant: "Rocky 8 (x86_64)"
@@ -183,7 +183,7 @@ jobs:
             architecture: x86_64
             driver: ebpf
             image_name: "Rocky-8-EC2-Base*"
-            molecule_index: 13
+            molecule_index: 11
             owner_id: "792107900819"
             task_name: Rocky8-x86_64
             variant: "Rocky 8 (x86_64)"
@@ -191,7 +191,7 @@ jobs:
             architecture: x86_64
             driver: kmodule
             image_name: "Rocky-9-EC2-Base*"
-            molecule_index: 14
+            molecule_index: 12
             owner_id: "792107900819"
             task_name: Rocky9-x86_64
             variant: "Rocky 9 (x86_64)"
@@ -199,7 +199,7 @@ jobs:
             architecture: x86_64
             driver: ebpf
             image_name: "Rocky-9-EC2-Base*"
-            molecule_index: 14
+            molecule_index: 12
             owner_id: "792107900819"
             task_name: Rocky9-x86_64
             variant: "Rocky 9 (x86_64)"
