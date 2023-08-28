@@ -9,9 +9,23 @@
         name: python3
         state: present
 
-    - name: Update apt cache
-      ansible.builtin.apt:
-        update_cache: true
+    - name: Prepare Debian hosts
+      block:
+        - name: Update apt cache
+          ansible.builtin.apt:
+            update_cache: true
+
+        - name: Update Kernel
+          ansible.builtin.apt:
+            pkg:
+              - linux-image-cloud-amd64
+              - linux-headers-cloud-amd64
+            state: latest
+          register: update_debian_kernel
+
+        - name: Reboot system after kernel update (if required)
+          ansible.builtin.reboot:
+          when: update_debian_kernel.changed
       when: ansible_distribution == "Debian"
 
     - name: Update Alma, Fedora, and Rocky kernels
