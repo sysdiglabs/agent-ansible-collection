@@ -39,7 +39,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-1804
-    image: ami-092d086e9437633d7
+    image: ami-055744c75048d8296
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -49,12 +49,12 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2204-x86
-    image: ami-053b0d53c279acc90
+    image: ami-0408adfcef670a71e
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2204-aarch
-    image: ami-02dd4bca4caaab354
+    image: ami-0ad8678db4054377c
     instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
