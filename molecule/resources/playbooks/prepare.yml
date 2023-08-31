@@ -2,6 +2,7 @@
 - name: Prepare
   hosts: all
   gather_facts: true
+  strategy: free
   become: true
   tasks:
     - name: Make sure python3 is installed
