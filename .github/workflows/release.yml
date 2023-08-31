@@ -6,7 +6,7 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+-rc[0-9]+'
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: tools-runner-small
     steps:
       - name: Checkout
         uses: actions/checkout@v3
