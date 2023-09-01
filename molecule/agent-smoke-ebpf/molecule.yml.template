@@ -63,6 +63,11 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/xvda
+        ebs:
+          volume_size: 5
+          delete_on_termination: true
   - name: al2023
     image: ami-07d77b1e82b231201
     instance_type: ${INSTANCE_TYPE_X86}
