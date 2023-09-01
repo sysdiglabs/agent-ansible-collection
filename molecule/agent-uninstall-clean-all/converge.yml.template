@@ -1,6 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  strategy: free
   become: true
   roles:
     - role: sysdig.agent.agent_install
