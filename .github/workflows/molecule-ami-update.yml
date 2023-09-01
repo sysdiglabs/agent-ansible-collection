@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   updatecli:
-    runs-on: "ubuntu-latest"
+    runs-on: tools-runner-small
     strategy:
       matrix:
         platforms:
@@ -298,4 +298,4 @@ jobs:
       - name: Run Updatecli in apply mode
         run: "updatecli apply --config .github/updatecli/config-${{ matrix.platforms.task_name }}.yaml"
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.TOOLS_JENKINS_ADMIN_ACCESS_GITHUB_TOKEN }}"
