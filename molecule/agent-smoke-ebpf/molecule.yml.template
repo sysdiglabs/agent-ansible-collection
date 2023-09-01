@@ -86,7 +86,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: rocky9
-    image: ami-032d067e7f73e7519
+    image: ami-07d75f492ac3a326f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
