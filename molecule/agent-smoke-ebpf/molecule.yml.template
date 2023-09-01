@@ -44,7 +44,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2004
-    image: ami-04f215f0e52ec06cf
+    image: ami-0b14bf54c9cef7492
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
