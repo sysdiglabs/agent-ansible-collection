@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   updatecli:
-    runs-on: tools-runner-small
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         platforms:
