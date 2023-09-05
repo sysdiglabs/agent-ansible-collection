@@ -19,7 +19,7 @@ platforms:
           volume_size: 30
           delete_on_termination: true
   - name: alma9
-    image: ami-06bc84fafec254e1d
+    image: ami-0b1e78fb6f0d36eb3
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -34,7 +34,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: debian-12
-    image: ami-06db4d78cb1d3bbf9
+    image: ami-01ae074e29e7f8fd0
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -81,12 +81,12 @@ platforms:
   #    region: ${REGION}
   #    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: rocky8
-    image: ami-0e63078428ec6a2e1
+    image: ami-093bfdaaa5ea85b41
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: rocky9
-    image: ami-032d067e7f73e7519
+    image: ami-07d75f492ac3a326f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
