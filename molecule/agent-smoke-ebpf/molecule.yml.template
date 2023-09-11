@@ -59,10 +59,15 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: amzn2
-    image: ami-0bef6cc322bfff646
+    image: ami-0c694140f37d54e59
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/xvda
+        ebs:
+          volume_size: 5
+          delete_on_termination: true
   - name: al2023
     image: ami-0aa7f30112b5f1788
     instance_type: ${INSTANCE_TYPE_X86}
