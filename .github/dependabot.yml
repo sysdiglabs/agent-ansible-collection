@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/molecule/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+      - "skip-changelog"
+      - "dependabot"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: daily
+    labels:
+      - "dependencies"
+      - "skip-changelog"
+      - "dependabot"
