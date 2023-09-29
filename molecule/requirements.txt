@@ -1,5 +1,5 @@
 ansible-core==2.15.4
-ansible-lint==6.20.0
+ansible-lint==6.20.1
 boto3==1.28.56
 botocore==1.31.56
 envsubst==0.1.5
