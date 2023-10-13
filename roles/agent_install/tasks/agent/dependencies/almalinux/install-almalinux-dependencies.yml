@@ -16,10 +16,15 @@
     - name: Add epel GPG key
       ansible.builtin.rpm_key:
         key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+
     - name: Install epel
       ansible.builtin.yum:
         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
         state: present
+      retries: 10
+      delay: 3
+      register: result
+      until: result is not failed
 
     - name: Install dkms
       ansible.builtin.yum:
