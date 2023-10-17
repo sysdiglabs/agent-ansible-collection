@@ -59,7 +59,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: amzn2
-    image: ami-00f529903bcc02204
+    image: ami-029ad12be9f7bbc8d
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
