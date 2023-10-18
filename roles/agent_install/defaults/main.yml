@@ -36,7 +36,7 @@ configuration:
       location: ~
       install_build_dependencies: false
     override: ~
-    version: 12.16.2
+    version: 12.17.0
   repository:
     deb:
       url: ~
