@@ -104,7 +104,7 @@ provisioner:
     destroy: ../resources/playbooks/destroy.yml
     prepare: ../resources/playbooks/prepare.yml
 scenario:
-  name: agent-smoke-ebpf
+  name: agent-smoke-legacy-ebpf
   create_sequence:
     - create
     - prepare

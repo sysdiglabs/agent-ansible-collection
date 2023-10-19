@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         scenario:
-          - agent-smoke-ebpf
+          - agent-smoke-legacy-ebpf
           - agent-smoke-kmodule
           - agent-uninstall-clean-all
     runs-on: ubuntu-latest
