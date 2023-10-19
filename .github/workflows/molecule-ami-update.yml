@@ -20,7 +20,7 @@ jobs:
         platforms:
           - os: alma
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "AlmaLinux OS 8*"
             molecule_index: 0
             owner_id: "764336703387"
@@ -28,7 +28,7 @@ jobs:
             variant: "Alma 8 (x86_64)"
           - os: alma
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: "AlmaLinux OS 8*"
             molecule_index: 0
             owner_id: "764336703387"
@@ -36,7 +36,7 @@ jobs:
             variant: "Alma 8 (x86_64)"
           - os: alma
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "AlmaLinux OS 9*"
             molecule_index: 1
             owner_id: "764336703387"
@@ -44,7 +44,7 @@ jobs:
             variant: "Alma 9 (x86_64)"
           - os: alma
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: "AlmaLinux OS 9*"
             molecule_index: 1
             owner_id: "764336703387"
@@ -52,7 +52,7 @@ jobs:
             variant: "Alma 9 (x86_64)"
           - os: amazon
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: amzn2*
             molecule_index: 9
             owner_id: "137112412989"
@@ -60,7 +60,7 @@ jobs:
             variant: "Amazon Linux 2 (x86_64)"
           - os: amazon
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: amzn2*
             molecule_index: 9
             owner_id: "137112412989"
@@ -68,7 +68,7 @@ jobs:
             variant: "Amazon Linux 2 (x86_64)"
           - os: amazon
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: al2023-ami*
             molecule_index: 10
             owner_id: "137112412989"
@@ -76,7 +76,7 @@ jobs:
             variant: "Amazon Linux 2023 (x86_64)"
           - os: amazon
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: al2023-ami*
             molecule_index: 10
             owner_id: "137112412989"
@@ -84,7 +84,7 @@ jobs:
             variant: "Amazon Linux 2023 (x86_64)"
           - os: centos
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "CentOS Linux 7 x86_64*"
             molecule_index: 13
             owner_id: "125523088429"
@@ -92,7 +92,7 @@ jobs:
             variant: "CentOS 7 (x86_64)"
 #          - os: centos
 #            architecture: x86_64
-#            driver: kmodule
+#            driver: kmod
 #            image_name: "CentOS Stream 8 x86_64*"
 #            molecule_index: 11
 #            owner_id: "125523088429"
@@ -100,7 +100,7 @@ jobs:
 #            variant: "CentOS Stream 8 (x86_64)"
 #          - os: centos
 #            architecture: x86_64
-#            driver: ebpf
+#            driver: legacy_ebpf
 #            image_name: "CentOS Stream 8 x86_64*"
 #            molecule_index: 11
 #            owner_id: "125523088429"
@@ -108,7 +108,7 @@ jobs:
 #            variant: "CentOS Stream 8 (x86_64)"
 #          - os: centos
 #            architecture: arm64
-#            driver: kmodule
+#            driver: kmod
 #            image_name: "CentOS Stream 8 aarch64*"
 #            molecule_index: 12
 #            owner_id: "125523088429"
@@ -116,7 +116,7 @@ jobs:
 #            variant: "CentOS Stream 8 (arm64)"
 #          - os: centos
 #            architecture: arm64
-#            driver: ebpf
+#            driver: legacy_ebpf
 #            image_name: "CentOS Stream 8 aarch64*"
 #            molecule_index: 12
 #            owner_id: "125523088429"
@@ -124,7 +124,7 @@ jobs:
 #            variant: "CentOS Stream 8 (arm64)"
           - os: debian
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "debian-10-amd64*"
             molecule_index: 2
             owner_id: "136693071363"
@@ -132,7 +132,7 @@ jobs:
             variant: "Debian 10 (x86_64)"
           - os: debian
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: "debian-10-amd64*"
             molecule_index: 2
             owner_id: "136693071363"
@@ -140,7 +140,7 @@ jobs:
             variant: "Debian 10 (x86_64)"
           - os: debian
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "debian-11-amd64*"
             molecule_index: 3
             owner_id: "136693071363"
@@ -148,7 +148,7 @@ jobs:
             variant: "Debian 11 (x86_64)"
           - os: debian
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: "debian-11-amd64*"
             molecule_index: 3
             owner_id: "136693071363"
@@ -156,7 +156,7 @@ jobs:
             variant: "Debian 11 (x86_64)"
           - os: debian
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "debian-12-amd64*"
             molecule_index: 4
             owner_id: "136693071363"
@@ -164,7 +164,7 @@ jobs:
             variant: "Debian 12 (x86_64)"
           - os: debian
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: "debian-12-amd64*"
             molecule_index: 4
             owner_id: "136693071363"
@@ -172,7 +172,7 @@ jobs:
             variant: "Debian 12 (x86_64)"
           - os: rocky
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "Rocky-8-EC2-Base*"
             molecule_index: 11
             owner_id: "792107900819"
@@ -180,7 +180,7 @@ jobs:
             variant: "Rocky 8 (x86_64)"
           - os: rocky
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: "Rocky-8-EC2-Base*"
             molecule_index: 11
             owner_id: "792107900819"
@@ -188,7 +188,7 @@ jobs:
             variant: "Rocky 8 (x86_64)"
           - os: rocky
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: "Rocky-9-EC2-Base*"
             molecule_index: 12
             owner_id: "792107900819"
@@ -196,7 +196,7 @@ jobs:
             variant: "Rocky 9 (x86_64)"
           - os: rocky
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: "Rocky-9-EC2-Base*"
             molecule_index: 12
             owner_id: "792107900819"
@@ -204,7 +204,7 @@ jobs:
             variant: "Rocky 9 (x86_64)"
           - os: ubuntu
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server*
             molecule_index: 5
             owner_id: "099720109477"
@@ -212,7 +212,7 @@ jobs:
             variant: "Ubuntu 18.04 (x86_64)"
           - os: ubuntu
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server*
             molecule_index: 5
             owner_id: "099720109477"
@@ -220,7 +220,7 @@ jobs:
             variant: "Ubuntu 18.04 (x86_64)"
           - os: ubuntu
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
             molecule_index: 6
             owner_id: "099720109477"
@@ -228,7 +228,7 @@ jobs:
             variant: "Ubuntu 20.04 (x86_64)"
           - os: ubuntu
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
             molecule_index: 6
             owner_id: "099720109477"
@@ -236,7 +236,7 @@ jobs:
             variant: "Ubuntu 20.04 (x86_64)"
           - os: ubuntu
             architecture: x86_64
-            driver: kmodule
+            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
             molecule_index: 7
             owner_id: "099720109477"
@@ -244,7 +244,7 @@ jobs:
             variant: "Ubuntu 22.04 (x86_64)"
           - os: ubuntu
             architecture: x86_64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
             molecule_index: 7
             owner_id: "099720109477"
@@ -252,7 +252,7 @@ jobs:
             variant: "Ubuntu 22.04 (x86_64)"
           - os: ubuntu
             architecture: arm64
-            driver: kmodule
+            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
             molecule_index: 8
             owner_id: "099720109477"
@@ -260,7 +260,7 @@ jobs:
             variant: "Ubuntu 22.04 (arm64)"
           - os: ubuntu
             architecture: arm64
-            driver: ebpf
+            driver: legacy_ebpf
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
             molecule_index: 8
             owner_id: "099720109477"

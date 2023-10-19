@@ -11,7 +11,7 @@
   when: ansible_distribution_major_version == "9"
 
 - name: (RockyLinux) Install epel and dkms
-  when: agent_install_driver_type == "kmodule"
+  when: agent_install_driver_type == "kmod"
   block:
     - name: Add epel GPG key
       ansible.builtin.rpm_key:
@@ -35,4 +35,4 @@
   ansible.builtin.yum:
     name: clang,elfutils-libelf-devel,llvm
     state: present
-  when: agent_install_driver_type | lower == "ebpf"
+  when: agent_install_driver_type | lower == "legacy_ebpf"

@@ -32,7 +32,7 @@ configuration:
       ca_certificate_path: null
   agent:
     driver:
-      type: kmodule
+      type: kmod
       location: null
       install_build_dependencies: false
     override: null

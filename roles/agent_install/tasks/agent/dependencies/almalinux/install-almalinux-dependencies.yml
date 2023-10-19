@@ -11,7 +11,7 @@
   when: ansible_distribution_major_version == "9"
 
 - name: (AlmaLinux) Install epel and dkms
-  when: agent_install_driver_type == "kmodule"
+  when: agent_install_driver_type == "kmod"
   block:
     - name: Add epel GPG key
       ansible.builtin.rpm_key:
@@ -31,8 +31,8 @@
         name: dkms
         state: present
 
-- name: (AlmaLinux) Install eBPF dependencies
+- name: (AlmaLinux) Install Legacy eBPF dependencies
   ansible.builtin.yum:
     name: clang,elfutils-libelf-devel,llvm
     state: present
-  when: agent_install_driver_type | lower == "ebpf"
+  when: agent_install_driver_type | lower == "legacy_ebpf"

@@ -95,8 +95,11 @@ argument_specs:
                     required: false
                     description: "Specify the system call driver type for the Sysdig Agent"
                     choices:
-                      - ebpf
+                      - universal_ebpf
+                      - kmod
                       - kmodule
+                      - legacy_ebpf
+                      - ebpf
                   location:
                     type: str
                     required: false

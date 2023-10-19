@@ -47,9 +47,9 @@ targets:
     kind: yaml
     spec:
       files:
-        {{- if eq "${DRIVER}" "ebpf" }}
+        {{- if eq "${DRIVER}" "legacy_ebpf" }}
         - molecule/agent-smoke-ebpf/molecule.yml.template
-        {{- else if eq "${DRIVER}" "kmodule" }}
+        {{- else if eq "${DRIVER}" "kmod" }}
         - molecule/agent-smoke-kmodule/molecule.yml.template
         - molecule/agent-uninstall-clean-all/molecule.yml.template
         {{- end }}

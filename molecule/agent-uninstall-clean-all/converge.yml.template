@@ -15,7 +15,7 @@
           agent:
             driver:
               install_build_dependencies: true
-              type: kmodule
+              type: kmod
     - role: sysdig.agent.agent_uninstall
       vars:
         retain_agent_configuration: false
