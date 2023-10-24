@@ -1,10 +1,13 @@
+from ansible.utils.display import Display
 def to_agent_driver_type(data):
     """ Return the desired Sysdig Agent driver type """
     try:
         user_input = data['agent']['driver']['type']
         if user_input == "ebpf":
+            Display().warning("'ebpf' is a deprecated option for agent.driver.type.  Please use 'legacy_ebpf' instead.")
             return "legacy_ebpf"
         if user_input == "kmodule":
+            Display().warning("'kmodule' is a deprecated option for agent.driver.type.  Please use 'kmod' instead.")
             return "kmod"
         else:
             return user_input

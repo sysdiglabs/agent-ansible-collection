@@ -97,9 +97,9 @@ argument_specs:
                     choices:
                       - universal_ebpf
                       - kmod
-                      - kmodule
+                      - kmodule # deprecated
                       - legacy_ebpf
-                      - ebpf
+                      - ebpf # deprecated
                   location:
                     type: str
                     required: false
