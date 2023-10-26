@@ -3,3 +3,11 @@
   ansible.builtin.apt:
     name: linux-headers-{{ ansible_kernel }}
     state: present
+
+- name: (Ubuntu) Install clang and llvm
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - clang
+      - llvm
+    state: present
