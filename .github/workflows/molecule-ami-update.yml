@@ -36,6 +36,14 @@ jobs:
             variant: "Alma 8 (x86_64)"
           - os: alma
             architecture: x86_64
+            driver: universal_ebpf
+            image_name: "AlmaLinux OS 8*"
+            molecule_index: 0
+            owner_id: "764336703387"
+            task_name: Alma8-x86_64
+            variant: "Alma 8 (x86_64)"
+          - os: alma
+            architecture: x86_64
             driver: kmod
             image_name: "AlmaLinux OS 9*"
             molecule_index: 1
@@ -45,6 +53,14 @@ jobs:
           - os: alma
             architecture: x86_64
             driver: legacy_ebpf
+            image_name: "AlmaLinux OS 9*"
+            molecule_index: 1
+            owner_id: "764336703387"
+            task_name: Alma9-x86_64
+            variant: "Alma 9 (x86_64)"
+          - os: alma
+            architecture: x86_64
+            driver: universal_ebpf
             image_name: "AlmaLinux OS 9*"
             molecule_index: 1
             owner_id: "764336703387"
@@ -79,6 +95,14 @@ jobs:
             driver: legacy_ebpf
             image_name: al2023-ami*
             molecule_index: 10
+            owner_id: "137112412989"
+            task_name: AL2023-x86_64
+            variant: "Amazon Linux 2023 (x86_64)"
+          - os: amazon
+            architecture: x86_64
+            driver: universal_ebpf
+            image_name: al2023-ami*
+            molecule_index: 7
             owner_id: "137112412989"
             task_name: AL2023-x86_64
             variant: "Amazon Linux 2023 (x86_64)"
@@ -156,6 +180,14 @@ jobs:
             variant: "Debian 11 (x86_64)"
           - os: debian
             architecture: x86_64
+            driver: universal_ebpf
+            image_name: "debian-11-amd64*"
+            molecule_index: 2
+            owner_id: "136693071363"
+            task_name: Debian11-x86_64
+            variant: "Debian 11 (x86_64)"
+          - os: debian
+            architecture: x86_64
             driver: kmod
             image_name: "debian-12-amd64*"
             molecule_index: 4
@@ -167,6 +199,14 @@ jobs:
             driver: legacy_ebpf
             image_name: "debian-12-amd64*"
             molecule_index: 4
+            owner_id: "136693071363"
+            task_name: Debian12-x86_64
+            variant: "Debian 12 (x86_64)"
+          - os: debian
+            architecture: x86_64
+            driver: universal_ebpf
+            image_name: "debian-12-amd64*"
+            molecule_index: 3
             owner_id: "136693071363"
             task_name: Debian12-x86_64
             variant: "Debian 12 (x86_64)"
@@ -199,6 +239,14 @@ jobs:
             driver: legacy_ebpf
             image_name: "Rocky-9-EC2-Base*"
             molecule_index: 12
+            owner_id: "792107900819"
+            task_name: Rocky9-x86_64
+            variant: "Rocky 9 (x86_64)"
+          - os: rocky
+            architecture: x86_64
+            driver: universal_ebpf
+            image_name: "Rocky-9-EC2-Base*"
+            molecule_index: 8
             owner_id: "792107900819"
             task_name: Rocky9-x86_64
             variant: "Rocky 9 (x86_64)"
@@ -231,6 +279,14 @@ jobs:
             driver: legacy_ebpf
             image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
             molecule_index: 6
+            owner_id: "099720109477"
+            task_name: Ubuntu2004-x86_64
+            variant: "Ubuntu 20.04 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: universal_ebpf
+            image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
+            molecule_index: 4
             owner_id: "099720109477"
             task_name: Ubuntu2004-x86_64
             variant: "Ubuntu 20.04 (x86_64)"
@@ -247,6 +303,14 @@ jobs:
             driver: legacy_ebpf
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
             molecule_index: 7
+            owner_id: "099720109477"
+            task_name: Ubuntu2204-x86_64
+            variant: "Ubuntu 22.04 (x86_64)"
+          - os: ubuntu
+            architecture: x86_64
+            driver: universal_ebpf
+            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
+            molecule_index: 5
             owner_id: "099720109477"
             task_name: Ubuntu2204-x86_64
             variant: "Ubuntu 22.04 (x86_64)"
@@ -263,6 +327,14 @@ jobs:
             driver: legacy_ebpf
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
             molecule_index: 8
+            owner_id: "099720109477"
+            task_name: Ubuntu2204-arm64
+            variant: "Ubuntu 22.04 (arm64)"
+          - os: ubuntu
+            architecture: arm64
+            driver: universal_ebpf
+            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
+            molecule_index: 6
             owner_id: "099720109477"
             task_name: Ubuntu2204-arm64
             variant: "Ubuntu 22.04 (arm64)"
