@@ -295,6 +295,6 @@ jobs:
           DRIVER: ${{ matrix.platforms.driver }}
 
       - name: Run Updatecli in apply mode
-        run: "updatecli apply --config .github/updatecli/config-${{ matrix.platforms.task_name }}.yaml"
+        run: "updatecli apply --config .github/updatecli.d/config-${{ matrix.platforms.task_name }}.yaml"
         env:
           GITHUB_TOKEN: "${{ secrets.TOOLS_JENKINS_ADMIN_ACCESS_GITHUB_TOKEN }}"
