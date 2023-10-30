@@ -35,4 +35,4 @@
   ansible.builtin.yum:
     name: clang,elfutils-libelf-devel,llvm
     state: present
-  when: agent_install_driver_type | lower == "legacy_ebpf"
+  when: agent_install_driver_type == "legacy_ebpf"

@@ -20,8 +20,9 @@ jobs:
       fail-fast: false
       matrix:
         scenario:
-          - agent-smoke-legacy-ebpf
           - agent-smoke-kmodule
+          - agent-smoke-legacy-ebpf
+          - agent-smoke-universal-ebpf
           - agent-uninstall-clean-all
     runs-on: ubuntu-latest
     # These permissions are needed to interact with GitHub's OIDC Token endpoint.
