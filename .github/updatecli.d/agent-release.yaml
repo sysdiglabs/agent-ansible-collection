@@ -1,0 +1,44 @@
+name: update the install role for new agent release
+
+scms:
+  github:
+    kind: "github"
+    spec:
+      user: "updatecli"
+      email: "updatecli@sysdig.com"
+      owner: "sysdiglabs"
+      repository: "agent-ansible-collection"
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: draios-jenkins
+      branch: "main"
+
+actions:
+  github:
+    kind: "github/pullrequest"
+    scmid: "github"
+    spec:
+      automerge: true
+      description: 'bump the pinned agent version to {{ requiredEnv "AGENT_RELEASE" }}'
+      labels:
+        - "automated PR"
+      mergemethod: squash
+      title: 'feat: agent {{ requiredEnv "AGENT_RELEASE" }} release'
+
+sources:
+  agentRelease:
+    kind: dockerimage
+    spec:
+      image: quay.io/sysdig/agent
+      tagfilter: '{{ requiredEnv "AGENT_RELEASE" }}'
+      versionfilter:
+        kind: regex
+        pattern: '[0-9]+\.[0-9]+\.[0-9]+$'
+
+targets:
+  updatePinnedAgentVersion:
+    name: "update pinned agent version"
+    kind: yaml
+    scmid: github
+    spec:
+      file: "roles/agent_install/defaults/main.yml"
+      key: "$.configuration.agent.version"
