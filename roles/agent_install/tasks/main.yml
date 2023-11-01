@@ -44,15 +44,15 @@
         group: root
         mode: 0644
 
-    - name: Enable eBPF
-      when: agent_install_driver_type == "ebpf"
+    - name: Enable Universal / Legacy eBPF
+      when: agent_install_driver_type == "universal_ebpf" or agent_install_driver_type == "legacy_ebpf"
       block:
-        - name: (eBPF) Enable eBPF probe
-          ansible.builtin.lineinfile:
-            path: /etc/sysconfig/dragent
-            regexp: SYSDIG_BPF_PROBE
-            line: export SYSDIG_BPF_PROBE=
-            create: true
+        - name: (eBPF) Enable Universal / Legacy eBPF driver
+          ansible.builtin.template:
+            src: dragent_ebpf_env_file.j2
+            dest: "/etc/{% if ansible_pkg_mgr == 'apt' %}default{% else %}sysconfig{% endif %}/dragent"
+            owner: root
+            group: root
             mode: 0o644
 
         - name: (eBPF) Determine if sysdigcloud_probe module is loaded
@@ -76,12 +76,11 @@
           when: agent_install_probe_loaded.stdout == 'LOADED'
           changed_when: agent_install_probe_removed.rc == 0
 
-    - name: (kmodule) Disable eBPF
-      ansible.builtin.lineinfile:
-        path: /etc/sysconfig/dragent
-        regexp: SYSDIG_BPF_PROBE
+    - name: (kmod) Disable eBPF
+      ansible.builtin.file:
+        path: "/etc/{% if ansible_pkg_mgr == 'apt' %}default{% else %}sysconfig{% endif %}/dragent"
         state: absent
-      when: agent_install_driver_type == "kmodule"
+      when: agent_install_driver_type == "kmod"
 
     - name: Start dragent Service
       block:

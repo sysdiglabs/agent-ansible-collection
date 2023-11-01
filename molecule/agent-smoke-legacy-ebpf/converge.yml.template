@@ -15,4 +15,4 @@
       agent:
         driver:
           install_build_dependencies: true
-          type: ebpf
+          type: legacy_ebpf

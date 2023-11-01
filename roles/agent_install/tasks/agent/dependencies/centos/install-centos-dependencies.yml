@@ -11,7 +11,7 @@
   when: ansible_distribution_major_version in ["9"]
 
 - name: (CentOS) Install epel and dkms
-  when: agent_install_driver_type == "kmodule"
+  when: agent_install_driver_type == "kmod"
   block:
     - name: (CentOS) Add epel GPG key
       ansible.builtin.rpm_key:
@@ -42,4 +42,4 @@
   ansible.builtin.yum:
     name: clang,elfutils-libelf-devel,llvm
     state: present
-  when: agent_install_driver_type | lower == "ebpf"
+  when: agent_install_driver_type == "legacy_ebpf"

@@ -23,11 +23,6 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: debian-10
-    image: ami-0770134595d82d48f
-    instance_type: ${INSTANCE_TYPE_X86}
-    region: ${REGION}
-    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: debian-11
     image: ami-0133fb3dded749b65
     instance_type: ${INSTANCE_TYPE_X86}
@@ -38,55 +33,23 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-1804
-    image: ami-055744c75048d8296
-    instance_type: ${INSTANCE_TYPE_X86}
-    region: ${REGION}
-    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2004
-    image: ami-06aa3f7caf3a30282
+    image: ami-0a6e38961e6e621b0
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2204-x86
-    image: ami-008d819eefb4b5ee4
+    image: ami-0fc5d935ebf8bc3bc
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2204-aarch
-    image: ami-01ec7354bd709968b
+    image: ami-016485166ec7fa705
     instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: amzn2
-    image: ami-0874a928bbdd99fbc
-    instance_type: ${INSTANCE_TYPE_X86}
-    region: ${REGION}
-    vpc_subnet_id: ${VPC_SUBNET_ID}
-    volumes:
-      - device_name: /dev/xvda
-        ebs:
-          volume_size: 5
-          delete_on_termination: true
   - name: al2023
-    image: ami-071cfc2b0ffe14e37
-    instance_type: ${INSTANCE_TYPE_X86}
-    region: ${REGION}
-    vpc_subnet_id: ${VPC_SUBNET_ID}
-  #  - name: centos8-x86
-  #    boot_wait_seconds: 180
-  #    image: ami-03dbb661dc3a9b6a5
-  #    instance_type: ${INSTANCE_TYPE_X86}
-  #    region: ${REGION}
-  #    vpc_subnet_id: ${VPC_SUBNET_ID}
-  #  - name: centos8-aarch
-  #    boot_wait_seconds: 180
-  #    image: ami-0fbdd12bd5a9c2e6f
-  #    instance_type: ${INSTANCE_TYPE_AARCH}
-  #    region: ${REGION}
-  #    vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: rocky8
-    image: ami-093bfdaaa5ea85b41
+    image: ami-0f2eb5749e5a5699e
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -104,7 +67,7 @@ provisioner:
     destroy: ../resources/playbooks/destroy.yml
     prepare: ../resources/playbooks/prepare.yml
 scenario:
-  name: agent-smoke-ebpf
+  name: agent-smoke-universal-ebpf
   create_sequence:
     - create
     - prepare

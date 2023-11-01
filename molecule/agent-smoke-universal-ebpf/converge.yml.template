@@ -14,5 +14,5 @@
           port: ${COLLECTOR_PORT}
       agent:
         driver:
-          install_build_dependencies: true
-          type: kmod
+          install_build_dependencies: false
+          type: universal_ebpf
