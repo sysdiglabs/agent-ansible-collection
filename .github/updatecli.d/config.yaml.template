@@ -49,6 +49,8 @@ targets:
       files:
         {{- if eq "${DRIVER}" "legacy_ebpf" }}
         - molecule/agent-smoke-legacy-ebpf/molecule.yml.template
+        {{- else if eq "${DRIVER}" "universal_ebpf" }}
+        - molecule/agent-smoke-universal-ebpf/molecule.yml.template
         {{- else if eq "${DRIVER}" "kmod" }}
         - molecule/agent-smoke-kmodule/molecule.yml.template
         - molecule/agent-uninstall-clean-all/molecule.yml.template
