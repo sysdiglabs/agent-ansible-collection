@@ -354,7 +354,7 @@ jobs:
 
       - name: Substitute matrix vars
         run: |
-          cat .github/updatecli/config.yaml.template | envsubst > .github/updatecli/config-${{ matrix.platforms.task_name }}.yaml
+          cat .github/updatecli.d/config.yaml.template | envsubst > .github/updatecli.d/config-${{ matrix.platforms.task_name }}.yaml
         env:
           TASK_NAME: ${{ matrix.platforms.task_name }}
           VARIANT: ${{ matrix.platforms.variant }}
