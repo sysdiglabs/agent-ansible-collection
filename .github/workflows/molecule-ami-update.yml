@@ -354,7 +354,7 @@ jobs:
 
       - name: Substitute matrix vars
         run: |
-          cat .github/updatecli/config.yaml.template | envsubst > .github/updatecli/config-${{ matrix.platforms.task_name }}.yaml
+          cat .github/updatecli.d/config.yaml.template | envsubst > .github/updatecli.d/config-${{ matrix.platforms.driver }}-${{ matrix.platforms.task_name }}.yaml
         env:
           TASK_NAME: ${{ matrix.platforms.task_name }}
           VARIANT: ${{ matrix.platforms.variant }}
@@ -367,6 +367,6 @@ jobs:
           DRIVER: ${{ matrix.platforms.driver }}
 
       - name: Run Updatecli in apply mode
-        run: "updatecli apply --config .github/updatecli.d/config-${{ matrix.platforms.task_name }}.yaml"
+        run: "updatecli apply --config .github/updatecli.d/config-${{ matrix.platforms.driver }}-${{ matrix.platforms.task_name }}.yaml"
         env:
           GITHUB_TOKEN: "${{ secrets.TOOLS_JENKINS_ADMIN_ACCESS_GITHUB_TOKEN }}"
