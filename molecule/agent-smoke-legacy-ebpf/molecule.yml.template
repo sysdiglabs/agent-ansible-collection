@@ -69,7 +69,7 @@ platforms:
           volume_size: 5
           delete_on_termination: true
   - name: al2023
-    image: ami-071cfc2b0ffe14e37
+    image: ami-0d4df6583e939a1c4
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
