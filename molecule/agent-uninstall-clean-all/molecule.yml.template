@@ -44,7 +44,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2204-x86
-    image: ami-008d819eefb4b5ee4
+    image: ami-0e783882a19958fff
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -54,7 +54,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: amzn2
-    image: ami-0874a928bbdd99fbc
+    image: ami-03bd01bf2139c515c
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -64,7 +64,7 @@ platforms:
           volume_size: 5
           delete_on_termination: true
   - name: al2023
-    image: ami-071cfc2b0ffe14e37
+    image: ami-0d4df6583e939a1c4
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
