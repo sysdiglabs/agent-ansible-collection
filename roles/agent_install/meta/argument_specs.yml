@@ -203,3 +203,7 @@ argument_specs:
                 type: dict
                 required: false
                 description: "Sysdig Secure Profiling configuration"
+              local_forwarder:
+                type: dict
+                required: false
+                description: "Sysdig Secure Local forwarded configuration"

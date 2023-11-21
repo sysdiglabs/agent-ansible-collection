@@ -44,6 +44,14 @@
         group: root
         mode: 0644
 
+    - name: Create local_forwarder_config.yaml file
+      ansible.builtin.template:
+        src: local_forwarder_config.yaml.j2
+        dest: "/opt/draios/etc/local_forwarder_config.yaml"
+        owner: root
+        group: root
+        mode: 0644
+
     - name: Enable Universal / Legacy eBPF
       when: agent_install_driver_type == "universal_ebpf" or agent_install_driver_type == "legacy_ebpf"
       block:
