@@ -62,6 +62,26 @@ class UserSecureSettings(UserPlanSettings):
     def falcobaseline(self) -> dict:
         return self._features.get("profiling", {})
 
+    @property
+    def local_forwarder(self) -> dict:
+        cfg = self._features.get("local_forwarder", {})
+        cfg = cfg if cfg else {}
+        enabled = True if cfg.get("enabled", False) else False
+
+        if not enabled:
+            return {}
+
+        default_msg_types = [
+            "POLICY_EVENTS",
+            "SECURE_AUDIT"
+        ]
+
+        return {
+            "enabled": enabled,
+            "transmit_message_types":
+                self._features.get("local_forwarder", {}).get("transmit_message_types", default_msg_types)
+        }
+
 
 class UserConnectionSettings(UserSettings):
     REGION_MAP = {
@@ -210,7 +230,7 @@ class DragentSecureSettings(DragentSettings):
             ])
 
         res = self._get_config(["commandlines_capture", "drift_detection",
-                                "falcobaseline", "secure_audit_streams"])
+                                "falcobaseline", "secure_audit_streams", "local_forwarder"])
         res.update({feature: {"enabled": False} for feature in disabled_features})
         return res
 
