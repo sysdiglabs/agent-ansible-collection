@@ -207,3 +207,20 @@ argument_specs:
                 type: dict
                 required: false
                 description: "Sysdig Secure Local forwarded configuration"
+                required_if:
+                  - - enabled
+                    - true
+                    - - transmit_message_types
+                      - integrations
+                options:
+                  enabled:
+                    type: bool
+                    default: false
+                    required: false
+                  transmit_message_types:
+                    type: list
+                    default:
+                      - POLICY_EVENTS
+                      - SECURE_AUDIT
+                  integrations:
+                    type: list
