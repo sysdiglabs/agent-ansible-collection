@@ -19,7 +19,7 @@ platforms:
           volume_size: 30
           delete_on_termination: true
   - name: alma9
-    image: ami-0b1e78fb6f0d36eb3
+    image: ami-07bc349330a94a4e3
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
