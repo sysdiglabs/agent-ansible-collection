@@ -10,7 +10,7 @@
 - name: (Agent) Validate OS Version
   ansible.builtin.assert:
     that:
-      - ansible_distribution_major_version in supported_versions.{{ ansible_distribution | lower }}
+      - ansible_distribution_major_version in supported_versions[ansible_distribution | lower]
     quiet: true
   vars:
     supported_versions:
