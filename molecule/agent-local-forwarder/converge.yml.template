@@ -1,0 +1,28 @@
+---
+- name: Converge
+  hosts: all
+  strategy: free
+  roles:
+    - role: sysdig.agent.agent_install
+  vars:
+    configuration:
+      connection:
+        access_key: ${AGENT_ACCESS_KEY}
+        custom_collector:
+          url: ${COLLECTOR_URL}
+          port: ${COLLECTOR_PORT}
+      agent:
+        driver:
+          install_build_dependencies: false
+          type: universal_ebpf
+    features:
+      security:
+        local_forwarder:
+          enabled: true
+          integrations:
+            - channels:
+                - SECURE_EVENTS_POLICIES
+                - ACTIVITY_AUDIT
+              configuration:
+                output: stdout
+                type: LOCAL

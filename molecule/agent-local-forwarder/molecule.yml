@@ -1,0 +1,32 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: centos-stream8
+    image: quay.io/centos/centos:stream8
+    pre_build_image: true
+    privileged: true
+provisioner:
+  name: ansible
+scenario:
+  create_sequence:
+    - create
+    - prepare
+  converge_sequence:
+    - create
+    - prepare
+    - converge
+  destroy_sequence:
+    - destroy
+  test_sequence:
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy
+verifier:
+  name: testinfra
+  additional_files_or_dirs:
+    - tests
