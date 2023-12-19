@@ -13,6 +13,7 @@ features:
     captures: null
     drift_detection: null
     profiling: null
+    local_forwarder: null
 configuration:
   monitoring: standard
   security: standard
