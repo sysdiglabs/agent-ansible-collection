@@ -8,6 +8,7 @@
     agent_install_deb_repository_gpgkey: "{{ configuration | sysdig.agent.toDebGpgKey | default('https://download.sysdig.com/DRAIOS-GPG-KEY.public', true) }}"
     agent_install_rpm_repository_url: "{{ configuration | sysdig.agent.toRpmUrl | default('https://download.sysdig.com/stable/rpm/$basearch', true) }}"
     agent_install_rpm_repository_gpgkey: "{{ configuration | sysdig.agent.toRpmGpgKey | default('https://download.sysdig.com/DRAIOS-GPG-KEY.public', true) }}"
+    agent_install_local_forwarder_enabled: "{{ configuration | sysdig.agent.toLocalForwarderEnabled | bool }}"
 
 - name: Install Sysdig Agent
   block:
@@ -51,6 +52,7 @@
         owner: root
         group: root
         mode: 0644
+      when: agent_install_local_forwarder_enabled
 
     - name: Enable Universal / Legacy eBPF
       when: agent_install_driver_type == "universal_ebpf" or agent_install_driver_type == "legacy_ebpf"
