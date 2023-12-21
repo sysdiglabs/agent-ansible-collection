@@ -37,7 +37,7 @@ configuration:
       location: null
       install_build_dependencies: false
     override: null
-    version: 12.17.1
+    version: 12.19.0
   repository:
     deb:
       url: null
