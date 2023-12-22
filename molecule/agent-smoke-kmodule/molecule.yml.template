@@ -8,52 +8,52 @@ lint: |
   ansible-lint tasks/agent
   yamllint tasks/agent
 platforms:
-  - name: alma8
+  - name: alma-8-x86_64
     image: ami-0ebb096e453d2fb20
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: alma9
+  - name: alma-9-x86_64
     image: ami-0b1e78fb6f0d36eb3
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: debian-10
+  - name: debian-10-x86_64
     image: ami-0770134595d82d48f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: debian-11
+  - name: debian-11-x86_64
     image: ami-0133fb3dded749b65
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: debian-12
+  - name: debian-12-x86_64
     image: ami-058bd2d568351da34
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-1804
+  - name: ubuntu-1804-x86_64
     image: ami-055744c75048d8296
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-2004
+  - name: ubuntu-2004-x86_64
     image: ami-06aa3f7caf3a30282
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-2204-x86
+  - name: ubuntu-2204-x86_64
     image: ami-0e783882a19958fff
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-2204-aarch
+  - name: ubuntu-2204-arm64
     image: ami-01ec7354bd709968b
     instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: amzn2
+  - name: amazon-2-x86_64
     image: ami-03bd01bf2139c515c
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
@@ -63,7 +63,7 @@ platforms:
         ebs:
           volume_size: 5
           delete_on_termination: true
-  - name: al2023
+  - name: amazon-2023-x86_64
     image: ami-0d4df6583e939a1c4
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
@@ -85,12 +85,12 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: rocky9
+  - name: rocky-9-x86_64
     image: ami-07d75f492ac3a326f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: centos7
+  - name: centos-7-x86_64
     image: ami-0aedf6b1cb669b4c7
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}

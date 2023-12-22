@@ -19,14 +19,14 @@ actions:
     scmid: "github"
     spec:
       automerge: true
-      description: "Update the AMIs used by Molecule to the latest available"
+      description: "Update the ami reference for ${OS} ${VARIANT} (${ARCHITECTURE}) to the latest available"
       draft: false
       mergemethod: squash
-      title: 'chore: update ${OS} ${ARCHITECTURE} images for ${DRIVER} tests'
+      title: 'chore: update ${OS} ${VARIANT} (${ARCHITECTURE}) image for {{ requiredEnv "SCENARIO_NAME" }} scenario'
 
 sources:
   getAmi:
-    name: Get latest AMI for ${VARIANT}
+    name: Get latest AMI for ${OS} ${VARIANT} (${ARCHITECTURE})
     kind: aws/ami
     spec:
       region: ${REGION}
@@ -39,20 +39,24 @@ sources:
         - name: "owner-id"
           values: "${OWNER_ID}"
 
+conditions:
+  presentInScenario:
+    name: "Check if ${OS} ${VARIANT} (${ARCHITECTURE}) is present in {{ requiredEnv "SCENARIO_NAME" }} scenario"
+    scmid: "github"
+    kind: yaml
+    spec:
+      engine: yamlpath
+      file: {{ requiredEnv "SCENARIO_CONFIG" }}
+      key: $.platforms[?(@.name=="${OS}-${VARIANT}-${ARCHITECTURE}")]
+      keyonly: true
+
 targets:
   updateAmi:
-    name: "Update AMI for ${VARIANT}"
+    name: "Update AMI for ${OS} ${VARIANT} (${ARCHITECTURE}) in {{ requiredEnv "SCENARIO_NAME" }} scenario"
     sourceid: getAmi
     scmid: "github"
     kind: yaml
     spec:
-      files:
-        {{- if eq "${DRIVER}" "legacy_ebpf" }}
-        - molecule/agent-smoke-legacy-ebpf/molecule.yml.template
-        {{- else if eq "${DRIVER}" "universal_ebpf" }}
-        - molecule/agent-smoke-universal-ebpf/molecule.yml.template
-        {{- else if eq "${DRIVER}" "kmod" }}
-        - molecule/agent-smoke-kmodule/molecule.yml.template
-        - molecule/agent-uninstall-clean-all/molecule.yml.template
-        {{- end }}
-      key: "$.platforms[${MOLECULE_INDEX}].image"
+      engine: yamlpath
+      file: {{ requiredEnv "SCENARIO_CONFIG" }}
+      key: $.platforms[?(@.name=="${OS}-${VARIANT}-${ARCHITECTURE}")].image

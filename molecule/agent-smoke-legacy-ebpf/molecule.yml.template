@@ -8,7 +8,7 @@ lint: |
   ansible-lint tasks/agent
   yamllint tasks/agent
 platforms:
-  - name: alma8
+  - name: alma-8-x86_64
     image: ami-017cf0c1f7146f117
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
@@ -18,47 +18,47 @@ platforms:
         ebs:
           volume_size: 30
           delete_on_termination: true
-  - name: alma9
+  - name: alma-9-x86_64
     image: ami-0b1e78fb6f0d36eb3
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: debian-10
+  - name: debian-10-x86_64
     image: ami-0770134595d82d48f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: debian-11
+  - name: debian-11-x86_64
     image: ami-0133fb3dded749b65
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: debian-12
+  - name: debian-12-x86_64
     image: ami-058bd2d568351da34
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-1804
+  - name: ubuntu-1804-x86_64
     image: ami-055744c75048d8296
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-2004
+  - name: ubuntu-2004-x86_64
     image: ami-04b107e90218672e5
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-2204-x86
+  - name: ubuntu-2204-x86_64
     image: ami-008d819eefb4b5ee4
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: ubuntu-2204-aarch
+  - name: ubuntu-2204-amd64
     image: ami-01ec7354bd709968b
     instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: amzn2
+  - name: amazon-2-x86_64
     image: ami-0874a928bbdd99fbc
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
@@ -68,7 +68,7 @@ platforms:
         ebs:
           volume_size: 5
           delete_on_termination: true
-  - name: al2023
+  - name: amazon-2023-x86_64
     image: ami-0d4df6583e939a1c4
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
@@ -90,7 +90,7 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-  - name: rocky9
+  - name: rocky-9-x86_64
     image: ami-07d75f492ac3a326f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
