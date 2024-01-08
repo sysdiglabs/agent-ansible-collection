@@ -20,324 +20,84 @@ jobs:
         platforms:
           - os: alma
             architecture: x86_64
-            driver: kmod
             image_name: "AlmaLinux OS 8*"
-            molecule_index: 0
             owner_id: "764336703387"
-            task_name: Alma8-x86_64
-            variant: "Alma 8 (x86_64)"
+            variant: "8"
           - os: alma
             architecture: x86_64
-            driver: legacy_ebpf
-            image_name: "AlmaLinux OS 8*"
-            molecule_index: 0
-            owner_id: "764336703387"
-            task_name: Alma8-x86_64
-            variant: "Alma 8 (x86_64)"
-          - os: alma
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: "AlmaLinux OS 8*"
-            molecule_index: 0
-            owner_id: "764336703387"
-            task_name: Alma8-x86_64
-            variant: "Alma 8 (x86_64)"
-          - os: alma
-            architecture: x86_64
-            driver: kmod
             image_name: "AlmaLinux OS 9*"
-            molecule_index: 1
             owner_id: "764336703387"
-            task_name: Alma9-x86_64
-            variant: "Alma 9 (x86_64)"
-          - os: alma
-            architecture: x86_64
-            driver: legacy_ebpf
-            image_name: "AlmaLinux OS 9*"
-            molecule_index: 1
-            owner_id: "764336703387"
-            task_name: Alma9-x86_64
-            variant: "Alma 9 (x86_64)"
-          - os: alma
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: "AlmaLinux OS 9*"
-            molecule_index: 1
-            owner_id: "764336703387"
-            task_name: Alma9-x86_64
-            variant: "Alma 9 (x86_64)"
+            variant: "9"
           - os: amazon
             architecture: x86_64
-            driver: kmod
             image_name: amzn2*
-            molecule_index: 9
             owner_id: "137112412989"
-            task_name: Amzn2-x86_64
-            variant: "Amazon Linux 2 (x86_64)"
+            variant: "2"
           - os: amazon
             architecture: x86_64
-            driver: legacy_ebpf
-            image_name: amzn2*
-            molecule_index: 9
-            owner_id: "137112412989"
-            task_name: Amzn2-x86_64
-            variant: "Amazon Linux 2 (x86_64)"
-          - os: amazon
-            architecture: x86_64
-            driver: kmod
             image_name: al2023-ami*
-            molecule_index: 10
             owner_id: "137112412989"
-            task_name: AL2023-x86_64
-            variant: "Amazon Linux 2023 (x86_64)"
-          - os: amazon
-            architecture: x86_64
-            driver: legacy_ebpf
-            image_name: al2023-ami*
-            molecule_index: 10
-            owner_id: "137112412989"
-            task_name: AL2023-x86_64
-            variant: "Amazon Linux 2023 (x86_64)"
-          - os: amazon
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: al2023-ami*
-            molecule_index: 7
-            owner_id: "137112412989"
-            task_name: AL2023-x86_64
-            variant: "Amazon Linux 2023 (x86_64)"
+            variant: "2023"
           - os: centos
             architecture: x86_64
-            driver: kmod
             image_name: "CentOS Linux 7 x86_64*"
-            molecule_index: 13
             owner_id: "125523088429"
-            task_name: CentOS7-x86_64
-            variant: "CentOS 7 (x86_64)"
-#          - os: centos
-#            architecture: x86_64
-#            driver: kmod
-#            image_name: "CentOS Stream 8 x86_64*"
-#            molecule_index: 11
-#            owner_id: "125523088429"
-#            task_name: CentOS8-x86_64
-#            variant: "CentOS Stream 8 (x86_64)"
-#          - os: centos
-#            architecture: x86_64
-#            driver: legacy_ebpf
-#            image_name: "CentOS Stream 8 x86_64*"
-#            molecule_index: 11
-#            owner_id: "125523088429"
-#            task_name: CentOS8-x86_64
-#            variant: "CentOS Stream 8 (x86_64)"
-#          - os: centos
-#            architecture: arm64
-#            driver: kmod
-#            image_name: "CentOS Stream 8 aarch64*"
-#            molecule_index: 12
-#            owner_id: "125523088429"
-#            task_name: CentOS8-arm64
-#            variant: "CentOS Stream 8 (arm64)"
-#          - os: centos
-#            architecture: arm64
-#            driver: legacy_ebpf
-#            image_name: "CentOS Stream 8 aarch64*"
-#            molecule_index: 12
-#            owner_id: "125523088429"
-#            task_name: CentOS8-arm64
-#            variant: "CentOS Stream 8 (arm64)"
+            variant: "7"
+          - os: centos
+            architecture: x86_64
+            image_name: "CentOS Stream 8 x86_64*"
+            owner_id: "125523088429"
+            variant: "8"
+          - os: centos
+            architecture: arm64
+            image_name: "CentOS Stream 8 aarch64*"
+            owner_id: "125523088429"
+            variant: "8"
           - os: debian
             architecture: x86_64
-            driver: kmod
             image_name: "debian-10-amd64*"
-            molecule_index: 2
             owner_id: "136693071363"
-            task_name: Debian10-x86_64
-            variant: "Debian 10 (x86_64)"
+            variant: "10"
           - os: debian
             architecture: x86_64
-            driver: legacy_ebpf
-            image_name: "debian-10-amd64*"
-            molecule_index: 2
-            owner_id: "136693071363"
-            task_name: Debian10-x86_64
-            variant: "Debian 10 (x86_64)"
-          - os: debian
-            architecture: x86_64
-            driver: kmod
             image_name: "debian-11-amd64*"
-            molecule_index: 3
             owner_id: "136693071363"
-            task_name: Debian11-x86_64
-            variant: "Debian 11 (x86_64)"
+            variant: "11"
           - os: debian
             architecture: x86_64
-            driver: legacy_ebpf
-            image_name: "debian-11-amd64*"
-            molecule_index: 3
-            owner_id: "136693071363"
-            task_name: Debian11-x86_64
-            variant: "Debian 11 (x86_64)"
-          - os: debian
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: "debian-11-amd64*"
-            molecule_index: 2
-            owner_id: "136693071363"
-            task_name: Debian11-x86_64
-            variant: "Debian 11 (x86_64)"
-          - os: debian
-            architecture: x86_64
-            driver: kmod
             image_name: "debian-12-amd64*"
-            molecule_index: 4
             owner_id: "136693071363"
-            task_name: Debian12-x86_64
-            variant: "Debian 12 (x86_64)"
-          - os: debian
-            architecture: x86_64
-            driver: legacy_ebpf
-            image_name: "debian-12-amd64*"
-            molecule_index: 4
-            owner_id: "136693071363"
-            task_name: Debian12-x86_64
-            variant: "Debian 12 (x86_64)"
-          - os: debian
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: "debian-12-amd64*"
-            molecule_index: 3
-            owner_id: "136693071363"
-            task_name: Debian12-x86_64
-            variant: "Debian 12 (x86_64)"
+            variant: "12"
           - os: rocky
             architecture: x86_64
-            driver: kmod
             image_name: "Rocky-8-EC2-Base*"
-            molecule_index: 11
             owner_id: "792107900819"
-            task_name: Rocky8-x86_64
-            variant: "Rocky 8 (x86_64)"
+            variant: "8"
           - os: rocky
             architecture: x86_64
-            driver: legacy_ebpf
-            image_name: "Rocky-8-EC2-Base*"
-            molecule_index: 11
-            owner_id: "792107900819"
-            task_name: Rocky8-x86_64
-            variant: "Rocky 8 (x86_64)"
-          - os: rocky
-            architecture: x86_64
-            driver: kmod
             image_name: "Rocky-9-EC2-Base*"
-            molecule_index: 12
             owner_id: "792107900819"
-            task_name: Rocky9-x86_64
-            variant: "Rocky 9 (x86_64)"
-          - os: rocky
-            architecture: x86_64
-            driver: legacy_ebpf
-            image_name: "Rocky-9-EC2-Base*"
-            molecule_index: 12
-            owner_id: "792107900819"
-            task_name: Rocky9-x86_64
-            variant: "Rocky 9 (x86_64)"
-          - os: rocky
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: "Rocky-9-EC2-Base*"
-            molecule_index: 8
-            owner_id: "792107900819"
-            task_name: Rocky9-x86_64
-            variant: "Rocky 9 (x86_64)"
+            variant: "9"
           - os: ubuntu
             architecture: x86_64
-            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server*
-            molecule_index: 5
             owner_id: "099720109477"
-            task_name: Ubuntu1804-x86_64
-            variant: "Ubuntu 18.04 (x86_64)"
+            variant: "1804"
           - os: ubuntu
             architecture: x86_64
-            driver: legacy_ebpf
-            image_name: ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server*
-            molecule_index: 5
-            owner_id: "099720109477"
-            task_name: Ubuntu1804-x86_64
-            variant: "Ubuntu 18.04 (x86_64)"
-          - os: ubuntu
-            architecture: x86_64
-            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
-            molecule_index: 6
             owner_id: "099720109477"
-            task_name: Ubuntu2004-x86_64
-            variant: "Ubuntu 20.04 (x86_64)"
+            variant: "2004"
           - os: ubuntu
             architecture: x86_64
-            driver: legacy_ebpf
-            image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
-            molecule_index: 6
-            owner_id: "099720109477"
-            task_name: Ubuntu2004-x86_64
-            variant: "Ubuntu 20.04 (x86_64)"
-          - os: ubuntu
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*
-            molecule_index: 4
-            owner_id: "099720109477"
-            task_name: Ubuntu2004-x86_64
-            variant: "Ubuntu 20.04 (x86_64)"
-          - os: ubuntu
-            architecture: x86_64
-            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
-            molecule_index: 7
             owner_id: "099720109477"
-            task_name: Ubuntu2204-x86_64
-            variant: "Ubuntu 22.04 (x86_64)"
-          - os: ubuntu
-            architecture: x86_64
-            driver: legacy_ebpf
-            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
-            molecule_index: 7
-            owner_id: "099720109477"
-            task_name: Ubuntu2204-x86_64
-            variant: "Ubuntu 22.04 (x86_64)"
-          - os: ubuntu
-            architecture: x86_64
-            driver: universal_ebpf
-            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
-            molecule_index: 5
-            owner_id: "099720109477"
-            task_name: Ubuntu2204-x86_64
-            variant: "Ubuntu 22.04 (x86_64)"
+            variant: "2204"
           - os: ubuntu
             architecture: arm64
-            driver: kmod
             image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
-            molecule_index: 8
             owner_id: "099720109477"
-            task_name: Ubuntu2204-arm64
-            variant: "Ubuntu 22.04 (arm64)"
-          - os: ubuntu
-            architecture: arm64
-            driver: legacy_ebpf
-            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
-            molecule_index: 8
-            owner_id: "099720109477"
-            task_name: Ubuntu2204-arm64
-            variant: "Ubuntu 22.04 (arm64)"
-          - os: ubuntu
-            architecture: arm64
-            driver: universal_ebpf
-            image_name: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-arm64-server*
-            molecule_index: 6
-            owner_id: "099720109477"
-            task_name: Ubuntu2204-arm64
-            variant: "Ubuntu 22.04 (arm64)"
+            variant: "2204"
 
     steps:
       - name: Checkout
@@ -354,19 +114,23 @@ jobs:
 
       - name: Substitute matrix vars
         run: |
-          cat .github/updatecli.d/config.yaml.template | envsubst > .github/updatecli.d/config-${{ matrix.platforms.driver }}-${{ matrix.platforms.task_name }}.yaml
+          cat .github/updatecli.d/config.yaml.template | envsubst > .github/updatecli.d/config-${{ matrix.platforms.os }}-${{ matrix.platforms.variant }}-${{ matrix.platforms.architecture }}.yaml
         env:
-          TASK_NAME: ${{ matrix.platforms.task_name }}
           VARIANT: ${{ matrix.platforms.variant }}
           REGION: ${{ secrets.REGION }}
           OS: ${{ matrix.platforms.os }}
           ARCHITECTURE: ${{ matrix.platforms.architecture }}
           OWNER_ID: ${{ matrix.platforms.owner_id }}
-          MOLECULE_INDEX: ${{ matrix.platforms.molecule_index }}
           IMAGE_NAME: ${{ matrix.platforms.image_name }}
-          DRIVER: ${{ matrix.platforms.driver }}
 
-      - name: Run Updatecli in apply mode
-        run: "updatecli apply --config .github/updatecli.d/config-${{ matrix.platforms.driver }}-${{ matrix.platforms.task_name }}.yaml"
+      - name: Run updatecli in apply mode
+        run: |
+          for scenario in $(find . -name "molecule.yml.template" -type f | sed 's/^.\///g');
+          do
+            scenario_name=$(basename $(dirname $scenario))
+            export SCENARIO_CONFIG=$scenario
+            export SCENARIO_NAME=$scenario_name
+            updatecli apply --config .github/updatecli.d/config-${{ matrix.platforms.os }}-${{ matrix.platforms.variant }}-${{ matrix.platforms.architecture }}.yaml
+          done
         env:
           GITHUB_TOKEN: "${{ secrets.TOOLS_JENKINS_ADMIN_ACCESS_GITHUB_TOKEN }}"
