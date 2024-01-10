@@ -1,5 +1,6 @@
 # config.yaml
 name: Molecule AMI updater
+pipelineid: ${OS}-${VARIANT}-${ARCHITECTURE}
 
 scms:
   github:
