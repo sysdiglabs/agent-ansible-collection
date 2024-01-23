@@ -56,7 +56,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: amazon-2023-x86_64
-    image: ami-037baf28d0e8dab12
+    image: ami-08337997c2ad1439f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
