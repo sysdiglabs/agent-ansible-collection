@@ -18,11 +18,18 @@ platforms:
         ebs:
           volume_size: 30
           delete_on_termination: true
+          volume_type: gp3
   - name: alma-9-x86_64
     image: ami-07bc349330a94a4e3
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 30
+          delete_on_termination: true
+          volume_type: gp3
   - name: debian-10-x86_64
     image: ami-027d15ce2206020c9
     instance_type: ${INSTANCE_TYPE_X86}
@@ -68,6 +75,7 @@ platforms:
         ebs:
           volume_size: 5
           delete_on_termination: true
+          volume_type: gp3
   - name: amazon-2023-x86_64
     image: ami-0d4df6583e939a1c4
     instance_type: ${INSTANCE_TYPE_X86}
@@ -90,11 +98,23 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 30
+          delete_on_termination: true
+          volume_type: gp3
   - name: rocky-9-x86_64
     image: ami-07d75f492ac3a326f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 30
+          delete_on_termination: true
+          volume_type: gp3
   - name: centos-7-x86_64
     image: ami-0aedf6b1cb669b4c7
     instance_type: ${INSTANCE_TYPE_X86}
