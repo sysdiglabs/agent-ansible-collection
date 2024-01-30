@@ -9,7 +9,7 @@ lint: |
   yamllint tasks/agent
 platforms:
   - name: alma-8-x86_64
-    image: ami-0ebb096e453d2fb20
+    image: ami-049bf0b955fb246d4
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -90,6 +90,11 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
+    volumes:
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 30
+          delete_on_termination: true
   - name: centos-7-x86_64
     image: ami-0aedf6b1cb669b4c7
     instance_type: ${INSTANCE_TYPE_X86}
