@@ -65,13 +65,13 @@ platforms:
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: centos8-x86_64
     boot_wait_seconds: 180
-    image: ami-03dbb661dc3a9b6a5
+    image: ami-0aa6883376595a33c
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: centos8-arm64
     boot_wait_seconds: 180
-    image: ami-0fbdd12bd5a9c2e6f
+    image: ami-02be6a70c24b1ae91
     instance_type: ${INSTANCE_TYPE_AARCH}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
