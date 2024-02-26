@@ -65,6 +65,12 @@
             group: root
             mode: 0o644
 
+        - name: (eBPF) I am a dragent as verbose as can be is there room in the log for the output of me
+          ansible.builtin.shell:
+            cmd: |
+              sed -i 's/#! \/bin\/sh.*$/#! \/bin\/sh -x/' /etc/init.d/dragent
+            executable: bash
+
         - name: (eBPF) Determine if sysdigcloud_probe module is loaded
           ansible.builtin.shell:
             cmd: |
