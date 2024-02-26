@@ -71,6 +71,18 @@
               sed -i 's/#! \/bin\/sh.*$/#! \/bin\/sh -x/' /etc/init.d/dragent
             executable: bash
 
+#        - name: (eBPF) Debug PIDFILE
+#          ansible.builtin.shell:
+#            cmd: |
+#              sed -i 's/start-stop-daemon\(.*\)PIDFILE/ls -l --time-style=full-iso \$PIDFILE; cat \$PIDFILE; start-stop-daemon\1PIDFILE/g' /etc/init.d/dragent
+#            executable: bash
+
+        - name: (eBPF) Drop --name $NAME
+          ansible.builtin.shell:
+            cmd: |
+              sed -i 's/--name \$NAME$//g' /etc/init.d/dragent
+            executable: bash
+
         - name: (eBPF) Determine if sysdigcloud_probe module is loaded
           ansible.builtin.shell:
             cmd: |
