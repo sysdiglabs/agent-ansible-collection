@@ -80,10 +80,19 @@
             state: stopped
           when: agent_install_probe_loaded.stdout == 'LOADED'
 
+        - name: (eBPF) Determine if sysdigcloud_probe module is still loaded after stop
+          ansible.builtin.shell:
+            cmd: |
+              set -o pipefail
+              lsmod | grep -q sysdigcloud_probe && echo -n LOADED || echo -n NOT_LOADED
+            executable: bash
+          register: agent_install_probe_loaded_after_stop
+          changed_when: agent_install_probe_loaded_after_stop.stdout == 'LOADED'
+
         - name: (eBPF) Ensure kernel module is not loaded
-          ansible.builtin.command: modprobe -r sysdigcloud_probe
+          ansible.builtin.command: modprobe -r sysdigcloud_probe || rmmod sysdigcloud_probe
           register: agent_install_probe_removed
-          when: agent_install_probe_loaded.stdout == 'LOADED'
+          when: agent_install_probe_loaded_after_stop.stdout == 'LOADED'
           changed_when: agent_install_probe_removed.rc == 0
 
     - name: (kmod) Disable eBPF
