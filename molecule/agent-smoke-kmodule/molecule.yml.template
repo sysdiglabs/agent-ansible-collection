@@ -20,7 +20,7 @@ platforms:
           delete_on_termination: true
           volume_type: gp3
   - name: alma-9-x86_64
-    image: ami-07bc349330a94a4e3
+    image: ami-097220738e8385b2f
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
