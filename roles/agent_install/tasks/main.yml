@@ -90,7 +90,10 @@
           changed_when: agent_install_probe_loaded_after_stop.stdout == 'LOADED'
 
         - name: (eBPF) Ensure kernel module is not loaded
-          ansible.builtin.command: modprobe -r sysdigcloud_probe || rmmod sysdigcloud_probe
+          ansible.builtin.shell:
+            cmd: |
+              modprobe -r sysdigcloud_probe || rmmod sysdigcloud_probe
+            executable: bash
           register: agent_install_probe_removed
           when: agent_install_probe_loaded_after_stop.stdout == 'LOADED'
           changed_when: agent_install_probe_removed.rc == 0
