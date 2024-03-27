@@ -37,7 +37,7 @@ configuration:
       location: null
       install_build_dependencies: false
     override: null
-    version: 13.0.2
+    version: 13.0.3
   repository:
     deb:
       url: null
