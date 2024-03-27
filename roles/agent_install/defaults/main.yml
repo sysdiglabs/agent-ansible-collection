@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-sysdig
-role_version: 0.4.2
+role_version: 0.4.3
 
 features:
   monitoring:
