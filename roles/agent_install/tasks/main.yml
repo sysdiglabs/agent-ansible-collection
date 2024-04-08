@@ -3,12 +3,25 @@
   ansible.builtin.set_fact:
     agent_install_version: "{{ configuration | sysdig.agent.toAgentVersion }}"
     agent_install_driver_type: "{{ configuration | sysdig.agent.toAgentDriverType | lower }}"
+    agent_install_pinned: "{{ configuration | sysdig.agent.toAgentVersionPinned }}"
+    agent_install_packages: "{{ configuration | sysdig.agent.toAgentInstallPackages }}"
+    agent_uninstall_packages: "{{ configuration | sysdig.agent.toAgentUninstallPackages }}"
     agent_install_probe_build_dependencies: "{{ configuration | sysdig.agent.toAgentInstallProbeBuildDependencies | bool }}"
     agent_install_deb_repository_url: "{{ configuration | sysdig.agent.toDebUrl | default('https://download.sysdig.com/stable/deb', true) }}"
     agent_install_deb_repository_gpgkey: "{{ configuration | sysdig.agent.toDebGpgKey | default('https://download.sysdig.com/DRAIOS-GPG-KEY.public', true) }}"
     agent_install_rpm_repository_url: "{{ configuration | sysdig.agent.toRpmUrl | default('https://download.sysdig.com/stable/rpm/$basearch', true) }}"
     agent_install_rpm_repository_gpgkey: "{{ configuration | sysdig.agent.toRpmGpgKey | default('https://download.sysdig.com/DRAIOS-GPG-KEY.public', true) }}"
     agent_install_local_forwarder_enabled: "{{ configuration | sysdig.agent.toLocalForwarderEnabled | bool }}"
+
+
+- name: Build versions suffix
+  ansible.builtin.set_fact:
+    agent_install_version_suffix: "{% if agent_install_pinned %}{% if ansible_pkg_mgr == 'apt' %}={{ agent_install_version }}{% else %}-{{ agent_install_version }}{% endif %}{% endif %}"
+
+- name: Build install package list
+  ansible.builtin.set_fact:
+    agent_install_package_list: "{{ agent_install_package_list | default([]) + [item + agent_install_version_suffix] }}"
+  with_items: "{{ agent_install_packages }}"
 
 - name: Install Sysdig Agent
   block:
@@ -22,20 +35,16 @@
     - name: Configure Sysdig Agent Repository
       ansible.builtin.include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-repository.yml"
 
-    - name: Install Sysdig Agent (latest)
+    - name: Uninstall Unneeded Sysdig Agent Packages
       ansible.builtin.package:
-        name: draios-agent
-        state: latest
-      when: (not agent_install_version) or
-            (agent_install_version and (agent_install_version == 'latest' or agent_install_version == ""))
+        name: "{{ agent_uninstall_packages }}"
+        state: absent
+      ignore_errors: true
 
-    - name: Install Sysdig Agent (pinned)
+    - name: Install Sysdig Agent "{{ agent_install_package_list }} "
       ansible.builtin.package:
-        name: "draios-agent{% if agent_install_version != 'latest' %}{% if ansible_pkg_mgr == 'apt' %}={% else %}-{% endif %}{{ agent_install_version }}{% endif %}"
+        name: "{{ agent_install_package_list }}"
         state: present
-      when:
-        - agent_install_version
-        - agent_install_version != 'latest'
 
     - name: Create dragent.yaml file
       ansible.builtin.template:
