@@ -35,13 +35,13 @@
     - name: Configure Sysdig Agent Repository
       ansible.builtin.include_tasks: "agent/configure-{{ 'rpm' if ansible_pkg_mgr in ['dnf', 'yum'] else 'deb' }}-repository.yml"
 
-    - name: Uninstall Unneeded Sysdig Agent Packages
+    - name: Uninstall Unneeded Sysdig Agent Packages {{ agent_uninstall_packages }}
       ansible.builtin.package:
         name: "{{ agent_uninstall_packages }}"
         state: absent
       ignore_errors: true
 
-    - name: Install Sysdig Agent "{{ agent_install_package_list }} "
+    - name: Install Sysdig Agent Packages {{ agent_install_package_list }}
       ansible.builtin.package:
         name: "{{ agent_install_package_list }}"
         state: present
