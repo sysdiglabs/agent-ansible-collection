@@ -39,7 +39,7 @@
       ansible.builtin.package:
         name: "{{ agent_uninstall_packages }}"
         state: absent
-      ignore_errors: true
+      failed_when: false
 
     - name: Install Sysdig Agent Packages {{ agent_install_package_list }}
       ansible.builtin.package:
