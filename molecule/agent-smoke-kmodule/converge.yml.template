@@ -16,3 +16,10 @@
         driver:
           install_build_dependencies: true
           type: kmod
+      repository:
+        deb:
+          url: https://download.sysdig.com/rc/deb
+          gpg_key: https://download.sysdig.com/DRAIOS-GPG-KEY.public
+        rpm:
+          url: https://download.sysdig.com/rc/rpm/$${HACK}basearch
+          gpg_key: https://download.sysdig.com/DRAIOS-GPG-KEY.public
