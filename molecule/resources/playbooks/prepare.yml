@@ -12,6 +12,13 @@
 
     - name: Prepare Debian hosts
       block:
+        - name: Work around buster-backports (debian 10)
+          ansible.builtin.replace:
+            path: /etc/apt/sources.list
+            regexp: '(^.*http://).*(\.debian\.org.*buster-backports.*$)'
+            replace: '\1archive\2'
+          when: ansible_distribution_major_version == "10"
+
         - name: Update apt cache
           ansible.builtin.apt:
             update_cache: true
