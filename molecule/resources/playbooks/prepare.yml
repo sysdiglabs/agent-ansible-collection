@@ -12,7 +12,7 @@
 
     - name: Prepare Debian hosts
       block:
-        - name: Replace buster-backports
+        - name: Work around buster-backports (debian 10)
           ansible.builtin.replace:
             path: /etc/apt/sources.list
             regexp: '(^.*http://).*(\.debian\.org.*buster-backports.*$)'
