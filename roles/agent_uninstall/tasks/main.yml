@@ -13,7 +13,11 @@
 
 - name: Remove Sysdig Agent Package
   ansible.builtin.package:
-    name: draios-agent
+    name:
+      - draios-agent
+      - draios-agent-slim
+      - draios-agent-kmodule
+      - draios-agent-legacy-ebpf
     state: absent
 
 - name: Cleanup Sysdig Agent Service Files
