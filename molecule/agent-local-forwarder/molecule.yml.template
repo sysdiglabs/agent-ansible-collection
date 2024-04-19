@@ -11,6 +11,10 @@ platforms:
     vpc_subnet_id: ${VPC_SUBNET_ID}
 provisioner:
   name: ansible
+  playbooks:
+    create: ../resources/playbooks/create.yml
+    destroy: ../resources/playbooks/destroy.yml
+    prepare: ../resources/playbooks/prepare.yml
 scenario:
   create_sequence:
     - create
