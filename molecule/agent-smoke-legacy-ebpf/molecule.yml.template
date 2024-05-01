@@ -31,7 +31,7 @@ platforms:
           delete_on_termination: true
           volume_type: gp3
   - name: debian-10-x86_64
-    image: ami-0e1e938b3f38e7558
+    image: ami-0d164bbd0c3b2cbd5
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -45,11 +45,11 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-#  - name: ubuntu-1804-x86_64
-#    image: ami-055744c75048d8296
-#    instance_type: ${INSTANCE_TYPE_X86}
-#    region: ${REGION}
-#    vpc_subnet_id: ${VPC_SUBNET_ID}
+    #  - name: ubuntu-1804-x86_64
+    #    image: ami-055744c75048d8296
+    #    instance_type: ${INSTANCE_TYPE_X86}
+    #    region: ${REGION}
+    #    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2004-x86_64
     image: ami-06f8dce63a6b60467
     instance_type: ${INSTANCE_TYPE_X86}
