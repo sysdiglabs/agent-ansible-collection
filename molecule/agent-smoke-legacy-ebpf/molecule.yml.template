@@ -41,7 +41,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: debian-12-x86_64
-    image: ami-02175b0058d3ce245
+    image: ami-05d2416d3dc5a7165
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
