@@ -20,7 +20,7 @@ platforms:
           delete_on_termination: true
           volume_type: gp3
   - name: alma-9-x86_64
-    image: ami-097220738e8385b2f
+    image: ami-09ec283e9acdfa57e
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
@@ -45,11 +45,11 @@ platforms:
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
-#  - name: ubuntu-1804-x86_64
-#    image: ami-055744c75048d8296
-#    instance_type: ${INSTANCE_TYPE_X86}
-#    region: ${REGION}
-#    vpc_subnet_id: ${VPC_SUBNET_ID}
+    #  - name: ubuntu-1804-x86_64
+    #    image: ami-055744c75048d8296
+    #    instance_type: ${INSTANCE_TYPE_X86}
+    #    region: ${REGION}
+    #    vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2004-x86_64
     image: ami-06f8dce63a6b60467
     instance_type: ${INSTANCE_TYPE_X86}
