@@ -1,7 +1,7 @@
 ansible-core==2.16.5
 ansible-lint==24.2.2
-boto3==1.34.93
-botocore==1.34.93
+boto3==1.34.128
+botocore==1.34.128
 envsubst==0.1.5
 molecule==24.2.1
 molecule-plugins[ec2,docker]==23.5.3
