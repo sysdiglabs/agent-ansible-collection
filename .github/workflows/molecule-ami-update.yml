@@ -40,11 +40,6 @@ jobs:
             variant: "2023"
           - os: centos
             architecture: x86_64
-            image_name: "CentOS Linux 7 x86_64*"
-            owner_id: "125523088429"
-            variant: "7"
-          - os: centos
-            architecture: x86_64
             image_name: "CentOS Stream 8 x86_64*"
             owner_id: "125523088429"
             variant: "8"
