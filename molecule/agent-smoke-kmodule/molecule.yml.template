@@ -66,7 +66,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: amazon-2-x86_64
-    image: ami-010ed9d8cd31c5c27
+    image: ami-064df481a3b21cc4b
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
