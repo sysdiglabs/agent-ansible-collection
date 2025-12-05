@@ -105,7 +105,7 @@ platforms:
           delete_on_termination: true
           volume_type: gp3
   - name: rocky-9-x86_64
-    image: ami-08ace1224b75d38c1
+    image: ami-078448b73f6313465
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
