@@ -46,7 +46,7 @@ platforms:
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
   - name: ubuntu-2204-x86_64
-    image: ami-00e1181affe35cfd8
+    image: ami-00de3875b03809ec5
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
