@@ -1,7 +1,7 @@
 - name: (RHEL) Install Kernel Headers (7/8)
-  ansible.builtin.yum:
-    name: "kernel-devel-{{ ansible_kernel }}"
-    state: present
+  ansible.builtin.command: yum -y install "kernel-devel-{{ ansible_kernel }}"
+  args:
+    creates: /usr/src/kernels/{{ ansible_kernel }}
   when: ansible_distribution_major_version in ["7", "8"]
 
 - name: (RHEL) Install Kernel Headers (9)
@@ -18,21 +18,21 @@
         key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
 
     - name: (RHEL) Install epel
-      ansible.builtin.yum:
-        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
-        state: present
+      ansible.builtin.command: yum -y install "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
+      args:
+        creates: /etc/yum.repos.d/epel.repo
       retries: 10
       delay: 3
-      register: result
-      until: result is not failed
+      register: agent_install_epel_result
+      until: agent_install_epel_result is not failed
 
     - name: (RHEL) Install dkms
-      ansible.builtin.yum:
-        name: dkms
-        state: present
+      ansible.builtin.command: yum -y install dkms
+      args:
+        creates: /usr/sbin/dkms
 
 - name: (RHEL) Install eBPF dependencies
-  ansible.builtin.yum:
-    name: clang,elfutils-libelf-devel,llvm
-    state: present
+  ansible.builtin.command: yum -y install clang elfutils-libelf-devel llvm
+  args:
+    creates: /usr/bin/clang
   when: agent_install_driver_type == "legacy_ebpf"

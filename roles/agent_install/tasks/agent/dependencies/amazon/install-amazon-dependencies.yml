@@ -1,17 +1,17 @@
 ---
 - name: (Amazon Linux) Install Kernel Headers
-  ansible.builtin.yum:
-    name: kernel-devel-{{ ansible_kernel }}
-    state: present
+  ansible.builtin.command: yum -y install "kernel-devel-{{ ansible_kernel }}"
+  args:
+    creates: /usr/src/kernels/{{ ansible_kernel }}
 
 - name: (Amazon Linux) Install dkms
-  ansible.builtin.yum:
-    name: dkms
-    state: present
+  ansible.builtin.command: yum -y install dkms
+  args:
+    creates: /usr/sbin/dkms
   when: agent_install_driver_type == "kmod"
 
 - name: (Amazon Linux) Install chkconfig
-  ansible.builtin.yum:
-    name: chkconfig
-    state: present
+  ansible.builtin.command: yum -y install chkconfig
+  args:
+    creates: /usr/sbin/chkconfig
   when: ansible_facts.distribution_version == "2023"
