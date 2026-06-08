@@ -1,1 +1,3 @@
 roles/agent_install/tasks/main.yml package-latest
+roles/agent_install/tasks/agent/dependencies/redhat/install-redhat-dependencies.yml command-instead-of-module
+roles/agent_install/tasks/agent/dependencies/amazon/install-amazon-dependencies.yml command-instead-of-module
