@@ -9,7 +9,7 @@ lint: |
   yamllint tasks/agent
 platforms:
   - name: alma-8-x86_64
-    image: ami-04dddb5e1637a1732
+    image: ami-0b257747bb8cbf09e
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
