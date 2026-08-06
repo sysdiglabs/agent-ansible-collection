@@ -31,7 +31,7 @@ platforms:
           delete_on_termination: true
           volume_type: gp3
   - name: debian-11-x86_64
-    image: ami-09bd9a01cee33eb54
+    image: ami-058cddb7daf9fa475
     instance_type: ${INSTANCE_TYPE_X86}
     region: ${REGION}
     vpc_subnet_id: ${VPC_SUBNET_ID}
